@@ -147,7 +147,6 @@ exports.signUp=async(req,res)=>{
 
 
 }
-
 // login controller
 
 exports.login=async(req,res)=>{
@@ -207,3 +206,4 @@ exports.login=async(req,res)=>{
 
 
 
+// change password
