@@ -17,7 +17,7 @@ createdAt:{
 
 // a function --> to send email
 
-async function sendverificationEmail(email , otp){
+async function sendverificationEmail(email ,otp){
     try {
         const mailResponse = await mailSender(email , "verification Email from EduNotion", otp);
         console.log("Email sent successfully : ", mailResponse);
