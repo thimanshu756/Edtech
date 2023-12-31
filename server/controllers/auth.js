@@ -1,6 +1,8 @@
 const User = require("../models/Users");
 const otpGenerator = require("otp-generator");
 const OTP = require("../models/OTP");
+const bcrypt = require("bcrypt")
+const Profile = require("../models/Profile");
 exports.SendOtp =async(req,res)=>{
 
     try {
@@ -49,4 +51,96 @@ exports.SendOtp =async(req,res)=>{
             message:'Getting error while sending the Otp',
         })
     }
+}
+
+// Signup handler
+
+exports.signUp=async(req,res)=>{
+
+    try {
+            // fetch the data from req body
+
+    const {
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        accountType,
+        contactNumber,
+        otp
+    }= req.body;
+    // validate the data
+    if(!firstName || !lastName||!email||!password||!confirmPassword||!accountType||!contactNumber||!otp){
+        return res.status(400).json({
+            success:false,
+            message:"please enter all the fields properly"
+        })
+    }
+    // match the both password
+    if(password!==confirmPassword){
+        return res.status(400).json({
+            success:false,
+            message:"Password dont match"
+        })
+    }
+    // check user already exists or not
+
+    const userExists = User.findOne({email});
+    if (userExists) {
+        return res.status(400).json({
+            success:false,
+            message:"User already exists "
+        })
+    }
+    // find the recent otp
+
+    const recentOtp = await OTP.find({email}).sort({createdAt:-1}).limit(1);
+    // validate otp
+    if(recentOtp.length==0){
+        return res.status(400).json({
+            success:false,
+            message:'Getting invalid otp from DB',
+        })   
+    }else if(otp!==recentOtp){
+        return res.status(400).json({
+            success:false,
+            message:'Invalid otp entered',
+        })   
+    }
+    // hash the password
+    const hashedPass = await bcrypt.hash(password,10);
+
+    const profileDetails = await Profile.create({
+        gender:null,
+        dateOfBirth:null,
+        about:null,
+        contactNumber:null
+    })
+    // create entry in db
+    const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        contactNumber,
+        password:hashedPass,
+        accountType,
+        additionalDetails:profileDetails._id,
+        img:`https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`
+    });
+    console.log("User that is saved in DB is :" , user);
+    return res.status(200).json({
+        success:true,
+        message:"User registerd sucessfully",
+        user
+    })
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message:'Getting error Signing up',
+        })
+    }
+
+
+
 }
