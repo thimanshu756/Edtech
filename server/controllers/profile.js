@@ -59,3 +59,41 @@ exports.deleteProfile=async(req,res)=>{
         })  
     }
 }
+
+// get all the users
+
+exports.getAllUsers =async(req,res)=>{
+
+
+    try {
+     // get id
+
+    const {ID} = req.params;
+    // validate
+
+    if (!ID) {
+        return res.status(401).json({
+            message:"NO ID FOUND",
+            success:false
+        })
+    // get user Details
+
+    const userDetails =  await User.findById(ID);
+
+    return res.status(200).json({
+        message:"User data fetch successfully",
+        success:true,
+        userDetails
+    })
+}
+    } catch (error) {
+        return res.status(500).json({
+            message:"User canot be Found",
+            success:false,
+            error:error.message
+        })  
+    }
+
+
+
+}
