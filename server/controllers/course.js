@@ -5,7 +5,7 @@ const { uploadToCloudinary } = require("../utils/imageUploader");
 
 
 
-const createCourse=async(req,res)=>{
+exports.createCourse=async(req,res)=>{
 
     try {
             // fetch data

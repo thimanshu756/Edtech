@@ -28,7 +28,7 @@ exports.createCategory=async(req,res)=>{
         return res.status(500).json({
             message:"got an error in creating a Category",
             success:false,
-        categoryData
+            categoryData
         })
     }
 }

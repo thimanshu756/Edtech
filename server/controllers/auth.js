@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt")
 const Profile = require("../models/Profile");
 const jwt = require("jsonwebtoken")
 const dotenv = require("dotenv");
+const mailSender = require("../utils/mailSender");
 dotenv.config();
 exports.SendOtp =async(req,res)=>{
 
@@ -207,3 +208,36 @@ exports.login=async(req,res)=>{
 
 
 // change password
+
+exports.changePassword= async(req,res)=>{
+
+    try {
+        // fetch the data
+        const {oldPasword,newPassword,confirmPassword}=req.body;
+        //validate
+        if((!oldPasword||!newPassword||!confirmPassword)&& (newPassword==confirmPassword)){
+            return res.status(402).json({
+                message:"Please Enter all the fields properly",
+                success:false
+            })
+        }
+        if (bcrypt.compare(oldPasword,req.user.password)) {
+            const userId = req.user.id;
+            const updatedPassword= bcrypt.hash(newPassword,10);
+            const updatePassword = await User.findByIdAndUpdate({_id:userId},{
+                password:updatedPassword
+            })
+            return res.status(200).json({
+                message:"password updated",
+                success:true
+            })
+            await mailSender(req.user.email,"Password Changed","Congratulations your password is changed");
+        }
+    } catch (error) {
+        return res.status(500).json({
+            message:"Coudn't change the password",
+            success:false,
+            error:error
+        })
+    }
+}
