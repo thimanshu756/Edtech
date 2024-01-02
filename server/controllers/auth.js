@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken")
 const dotenv = require("dotenv");
 const mailSender = require("../utils/mailSender");
 dotenv.config();
+
+
 exports.SendOtp =async(req,res)=>{
 
     try {
@@ -144,9 +146,6 @@ exports.signUp=async(req,res)=>{
             message:'Getting error Signing up',
         })
     }
-
-
-
 }
 // login controller
 
@@ -185,9 +184,8 @@ exports.login=async(req,res)=>{
         user.password=undefined;
     }
     // create cookie
-
     const options ={
-        expires:new Date(Date.now()+3*24*60*60**1000);
+        expires:new Date(Date.now()+3*24*60*60**1000), 
         httpOnly:true
     }
     res.cookie("token",token,options).status(200).json({
