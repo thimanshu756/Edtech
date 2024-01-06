@@ -49,3 +49,48 @@ exports.showallCategory=async(req,res)=>{
         })
     }
 }
+
+// category page details
+
+exports.categoryPageDetails= async(req,res)=>{
+
+    // 
+    try {
+        // Get category Id
+        const {categoryId}= req.body;
+        // get courses for specified Id
+        const selectedCategory = await Category.findById(categoryId).populate("courses").exec();
+        // validate
+        if (!selectedCategory) {
+            return res.status(401).json({
+                success:false,
+                message:"Canot find the category"
+            })
+        }
+        // get courses for different categories
+
+        const differentCategories = await Category.find({
+            _id:{$ne:categoryId}
+        }).populate("courses").exec();
+
+        //validate
+        if (!differentCategories) {
+            return res.status(401).json({
+                success:false,
+                message:"Canot find the Different categories"
+            })
+        }
+        // get top selling course : --> next tym
+
+        return res.status(200).json({
+            success:true,
+            message:"Fetched the courses successfully",
+            data:{
+                selectedCategory,
+                differentCategories
+            }
+        })
+    } catch (error) {
+        
+    }
+}
