@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 require("dotenv").config();
 
-exports.Auth=async(req,res,next)=>{
+exports.auth=async(req,res,next)=>{
 
     // extract the token
 
@@ -36,7 +36,7 @@ exports.Auth=async(req,res,next)=>{
 }
 
 // isStudent
-exports.isStudents=(req,res,next)=>{
+exports.isStudent=(req,res,next)=>{
 
     try {
         if (req.user.accountType!=="Student") {

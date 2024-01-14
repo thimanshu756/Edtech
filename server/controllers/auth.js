@@ -207,9 +207,8 @@ exports.login=async(req,res)=>{
 
 // change password
 
-exports.changePassword= async(req,res)=>{
-
-    try {
+exports.changePassword=async(req,res)=>{
+    try{
         // fetch the data
         const {oldPasword,newPassword,confirmPassword}=req.body;
         //validate
@@ -231,7 +230,7 @@ exports.changePassword= async(req,res)=>{
             })
             await mailSender(req.user.email,"Password Changed","Congratulations your password is changed");
         }
-    } catch (error) {
+    }catch(error){
         return res.status(500).json({
             message:"Coudn't change the password",
             success:false,

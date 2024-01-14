@@ -33,7 +33,7 @@ const {
 // Sub-Sections Controllers Import
 const {
   createSubSection,
-  updateSubSection,
+  updateSubsection,
   deleteSubSection,
 } = require("../controllers/Subsection")
 
@@ -62,7 +62,7 @@ router.post("/updateSection", auth, isInstructor, updateSection)
 // Delete a Section
 router.post("/deleteSection", auth, isInstructor, deleteSection)
 // Edit Sub Section
-router.post("/updateSubSection", auth, isInstructor, updateSubSection)
+router.post("/updateSubSection", auth, isInstructor, updateSubsection)
 // Delete Sub Section
 router.post("/deleteSubSection", auth, isInstructor, deleteSubSection)
 // Add a Sub Section to a Section

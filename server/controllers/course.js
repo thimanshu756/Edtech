@@ -141,7 +141,6 @@ exports.editCourse = async (req, res) => {
     })
   }
 }
-
 exports.getAllCourses = async (req, res) => {
   try {
     const allCourses = await Course.find({ status: "published" }, {
@@ -166,9 +165,7 @@ exports.getAllCourses = async (req, res) => {
     })
   }
 }
-
-
-exports.getCourseDetail = async (req, res) => {
+exports.getCourseDetails = async (req, res) => {
   try {
 
     const { courseId } = req.body;
@@ -265,7 +262,9 @@ exports.getFullCourseDetails = async (req, res) => {
       data: {
         courseDetails,
         totalDuration,
-        completedVideos: courseProgressCount ? completedVideos ? courseProgressCount ? completedVideos : [],
+        completedVideos: courseProgressCount?.completedVideos
+        ? courseProgressCount?.completedVideos
+        : [],
       }
     })
   } catch (error) {
@@ -281,7 +280,7 @@ exports.getFullCourseDetails = async (req, res) => {
 
 exports.getInstructorCourses = async (req, res) => {
   try {
-    const instructorId = req.user.Id,
+    const instructorId = req.user.Id
     // find all courses belong to instructor 
     const instructorCourses = await Course.find({
       instructor: instructorId,

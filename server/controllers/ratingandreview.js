@@ -73,7 +73,7 @@ const { default: mongoose } = require("mongoose");
 
  // get avg rating
 
- exports.averageRating=async(req,res)=>{
+ exports.getAverageRating=async(req,res)=>{
 
     try {
         // get courseId
@@ -113,7 +113,7 @@ const { default: mongoose } = require("mongoose");
 
  // get all the rating
 
- exports.getAllReviews=async(req,res)=>{
+ exports.getAllRating=async(req,res)=>{
     try {
         const allReviews = await RatingAndReview.find({}).sort({rating:"desc"})
         .populate({
