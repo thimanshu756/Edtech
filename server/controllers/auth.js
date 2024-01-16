@@ -241,6 +241,7 @@ exports.changePassword=async(req,res)=>{
                 success:false
             })
         }
+        console.log("user pass is -->",req.user.password);
         if (bcrypt.compare(oldPasword,req.user.password)) {
             const userId = req.user.id;
             const updatedPassword= bcrypt.hash(newPassword,10);
