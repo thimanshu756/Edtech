@@ -6,14 +6,18 @@ exports.createCategory=async(req,res)=>{
 
     try {
         // fetch data from req.body
+        console.log("inside create category");
         const {name, description}=req.body;
         //validation
+        console.log("name-->",name,"description-->",description);
         if (!name || !description) {
             return res.status(401).json({
                 success:false,
                 message:"Please enter all the fields properly and try again"
             })
+        }
             // create entry in db
+           
             const categoryData= await Category.create({
                 name:name,
                 description:description
@@ -23,7 +27,7 @@ exports.createCategory=async(req,res)=>{
                 mesage:"Category created successfully",
                 success:true
             })
-        }
+       
     } catch (error) {
         return res.status(500).json({
             message:"got an error in creating a Category",

@@ -6,8 +6,9 @@ const bcrypt = require("bcrypt")
 exports.resetPasswordToken=async(req,res)=>{
     try {
         // fetch email from req
-        const email = req.body;
+        const email = req.body.email;
         // validate
+        console.log("email is :",email);
         if(!email){
             return res.Status(401).json({
                 sucess:false,
@@ -15,7 +16,8 @@ exports.resetPasswordToken=async(req,res)=>{
             })
         }
         // kya user hai
-        const user= await User.findOne({email});
+        const user= await User.findOne({email:email});
+        console.log("USER IS -->",user);
         if(!user){
             return res.Status(401).json({
                 sucess:false,
@@ -40,7 +42,8 @@ exports.resetPasswordToken=async(req,res)=>{
                 message:"Mail Sent Sucessfully"
             })
     } catch (error) {
-        return res.Status(500).json({
+          console.log(error);
+        return res.status(500).json({
             sucess:false,
             message:"Getting error in setting resetToken"
         })
@@ -62,8 +65,10 @@ exports.resetPassword=async(req,res)=>{
     // get userdetails from db using token
     const userDetails = await User.findOne({token:token});
     // no entry if token is expired
-    if (userDetails.resetPasswordExpires<Date.now()){
-        return res.Status(401).json({
+    console.log("date is --->",userDetails.resetPasswordExpires);
+    console.log(" my date is --->",Date.now());
+    if (userDetails.resetPasswordExpires>Date.now()){
+        return res.status(401).json({
             sucess:false,
             message:"Token expired ! please try again"
         })
@@ -77,7 +82,7 @@ exports.resetPassword=async(req,res)=>{
         message:"Password changed sucessfully"
     })
     } catch (error) {
-        return res.Status(500).json({
+        return res.status(500).json({
             sucess:false,
             message:"Getting error in updating the password"
         })

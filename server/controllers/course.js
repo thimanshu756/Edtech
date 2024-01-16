@@ -1,16 +1,17 @@
 const Course = require("../models/Course");
 const Tag = require("../models/Category");
 const User = require("../models/Users");
-const { uploadToCloudinary } = require("../utils/imageUploader");
+const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const { populate } = require("../models/Course");
 const Courseprogress = require("../models/CourseProgress")
 const Section = require("../models/Section")
 const SubSection = require("../models/SubSection")
+const Category= require("../models/Category")
 exports.createCourse = async (req, res) => {
 
   try {
     // fetch data
-    const { courseName, courseDescription, whatYouWillLearn, price, tag } = req.body;
+    const { courseName, courseDescription, whatYouWillLearn, price, tag ,category} = req.body;
 
     // get thumbnail
     const thumbnail = req.files.thumbnailImage;
@@ -30,15 +31,15 @@ exports.createCourse = async (req, res) => {
         success: false
       })
     }
-    const Tagdetails = await Tag.findById(tag);
-    if (!Tagdetails) {
+    const CategoryDetails = await Category.findById(category);
+    if (!CategoryDetails) {
       return res.status(401).json({
         message: "Tag details not found",
         success: false
       })
     }
     // upload img to  cloudinary
-    const thumbnailImage = await uploadToCloudinary(thumbnail, process.env.FolderName);
+    const thumbnailImage = await uploadImageToCloudinary(thumbnail, process.env.FolderName);
 
     // create an entry for new course
     const newCourse = await Course.create({
@@ -47,13 +48,14 @@ exports.createCourse = async (req, res) => {
       instructor: InstructorDetails._id,
       whatYouWillLearn: whatYouWillLearn,
       price,
-      tag: Tagdetails._id,
+      tag:tag,
+      category:category._id,
       thumbnail: thumbnailImage.secure_url,
     })
     console.log(newCourse);
 
     // ad a new course to user schema of instructor
-    const newInstructorCourse = await User.findByIdAndUpdate({ id: InstructorDetails._id }, {
+    const newInstructorCourse = await User.findByIdAndUpdate({ _id: InstructorDetails._id }, {
       $push: {
         courses: newCourse._id
       },
@@ -64,9 +66,11 @@ exports.createCourse = async (req, res) => {
     // update the Tag Schema :Todo
     return res.status(200).json({
       message: "course created ",
-      success: true
+      success: true,
+      data:newCourse
     })
   } catch (error) {
+    console.log(error);
     return res.status(401).json({
       message: "Error in creating Course",
       success: false
@@ -167,46 +171,45 @@ exports.getAllCourses = async (req, res) => {
 }
 exports.getCourseDetails = async (req, res) => {
   try {
-
     const { courseId } = req.body;
     const courseDetails = await Course.findOne({
       _id: courseId
     })
       .populate({
-        path: "Instructor",
+        path: "instructor",
         populate: {
           path: "additionalDetails",
         }
       })
-      .populate("Category")
-      .populate("ratingAndReview")
+      .populate("category")
+      // .populate("ratingAndReview")
       .populate({
         path: "courseContent",
         populate: {
-          payh: "subSection",
+          path: "subSection",
           select: "-videourl"
         }
       }).exec();
 
     // time duration management
-    const totalDurationInSeconds = 0;
-    courseDetails.courseContent.forEach((content) => {
-      content.subSection.forEach((subSection) => {
-        const timeDurationInSeconds = parseInt(subSection.timeDuration)
-      })
-    })
-    const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
+    // const totalDurationInSeconds = 0;
+    // courseDetails.courseContent.forEach((content) => {
+    //   content.subSection.forEach((subSection) => {
+    //     const timeDurationInSeconds = parseInt(subSection.timeDuration)
+    //   })
+    // })
+    // const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
     return res.status(200).json({
       message: "corse detail fetched sucessfully",
       data: {
         courseDetails,
-        totalDuration
       },
       success: true
     })
   } catch (error) {
+    console.log(error);
     return res.status(401).json({
-      message: "gettion error in fetching the course Detail",
+      message: "getting error in fetching the course Detail",
       success: false
     })
   }
@@ -222,13 +225,13 @@ exports.getFullCourseDetails = async (req, res) => {
       _id: courseId,
     })
       .populate({
-        path: "Instructor",
+        path: "instructor",
         populate: {
           path: "additionalDetails",
         }
       })
       .populate("category")
-      .populate("ratingAndReview")
+      // .populate("ratingAndReview")
       .populate({
         path: "courseContent",
         populate: {
@@ -250,24 +253,25 @@ exports.getFullCourseDetails = async (req, res) => {
       })
     }
 
-    const totalDurationInSeconds = 0;
-    courseDetails.courseContent.forEach((content) => {
-      content.subSection.forEach((subSection) => {
-        const timeDurationInSeconds = parseInt(subSection.timeDuration)
-      })
-    })
-    const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
+    // const totalDurationInSeconds = 0;
+    // courseDetails.courseContent.forEach((content) => {
+    //   content.subSection.forEach((subSection) => {
+    //     const timeDurationInSeconds = parseInt(subSection.timeDuration)
+    //   })
+    // })
+    // const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
     return res.status(200).json({
       success: true,
       data: {
         courseDetails,
-        totalDuration,
+        // totalDuration,
         completedVideos: courseProgressCount?.completedVideos
         ? courseProgressCount?.completedVideos
         : [],
       }
     })
   } catch (error) {
+    console.log(error);
     return res.json({
       message: "getting error in fetching the fulldetails of course",
       success: false,

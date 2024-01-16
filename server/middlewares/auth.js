@@ -6,6 +6,7 @@ exports.auth=async(req,res,next)=>{
     // extract the token
 
     try {
+        console.log("inside auth");
     const token = req.cookies.token||req.body.token||req.header("Authorization").replace("Bearer","");
     
     if(!token){
@@ -40,14 +41,14 @@ exports.isStudent=(req,res,next)=>{
 
     try {
         if (req.user.accountType!=="Student") {
-            return res.Status(401).json({
+            return res.status(401).json({
                 sucess:false,
                 message:"You are not authorised to enter in student"
             })
         }
-
+        next();
     } catch (error) {
-        return res.Status(401).json({
+        return res.status(401).json({
             sucess:false,
             message:"User role cannot be verified please try again"
         })
@@ -59,15 +60,16 @@ exports.isStudent=(req,res,next)=>{
 exports.isAdmin=(req,res,next)=>{
 
     try {
+        console.log("inside isAdmin");
         if (req.user.accountType!=="Admin") {
-            return res.Status(401).json({
+            return res.status(401).json({
                 sucess:false,
                 message:"You are not authorised to enter in Admin"
             })
         }
-
+        next();
     } catch (error) {
-        return res.Status(401).json({
+        return res.status(401).json({
             sucess:false,
             message:"User role cannot be verified please try again"
         })
@@ -80,14 +82,14 @@ exports.isInstructor=(req,res,next)=>{
 
     try {
         if (req.user.accountType!=="Instructor") {
-            return res.Status(401).json({
+            return res.status(401).json({
                 sucess:false,
                 message:"You are not authorised to enter in Instructor"
             })
         }
-
+        next();
     } catch (error) {
-        return res.Status(401).json({
+        return res.status(401).json({
             sucess:false,
             message:"User role cannot be verified please try again"
         })

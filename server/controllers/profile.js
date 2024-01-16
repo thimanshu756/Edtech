@@ -26,7 +26,8 @@ exports.updateProfile= async(req,res)=>{
 
         return res.status(200).json({
             message:"profile updated successfully ",
-            success:true
+            success:true,
+            profileDetails:profileDetails
         })
     } catch (error) {
         return res.status(500).json({
@@ -68,7 +69,6 @@ exports.getAllUsers =async(req,res)=>{
 
     try {
      // get id
-
     const {ID} = req.params;
     // validate
 
@@ -98,7 +98,35 @@ exports.getAllUsers =async(req,res)=>{
 
 
 }
+exports.getUserDetails=async(req,res)=>{
+    try {
+        // get user id
+        const Id= req.user.id;
 
+        const userDetails= await User.findById(Id).populate({
+            path:"additionalDetails"
+        }).exec()
+
+        if(!userDetails){
+            return res.status(400).json({
+                message:"User not found",
+                success:false
+            })
+        }
+        return res.status(200).json({
+            message:"User  found",
+            success:true,
+            data:userDetails
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            message:"User not found getting error in controller",
+            success:false,
+            error:error
+        })
+    }
+}
 exports.updateDisplayPicture = async (req, res) => {
     try {
         const displayPicture = req.files.displayPicture

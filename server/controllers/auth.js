@@ -167,7 +167,7 @@ exports.login=async(req,res)=>{
     if(!email||!password){
         return res.status(500).json({
             success:false,
-            message:'Getting error while sending the Otp',
+            message:'please enter all the fields proprely',
         })
     }
     // check user exists or not
@@ -180,7 +180,8 @@ exports.login=async(req,res)=>{
     }
 
     // generate token after pass comparing 
-    if (bcrypt.compare(password,user.password)){
+    console.log("password is :",user.password);
+    if (await bcrypt.compare(password,user.password)){
         const payload ={
             email:user.email,
             id:user._id,
@@ -242,8 +243,9 @@ exports.changePassword=async(req,res)=>{
             })
         }
         console.log("user pass is -->",req.user.password);
+        
         if (bcrypt.compare(oldPasword,req.user.password)) {
-            const userId = req.user.id;
+            const userId = req.user.id
             const updatedPassword= bcrypt.hash(newPassword,10);
             const updatePassword = await User.findByIdAndUpdate({_id:userId},{
                 password:updatedPassword
