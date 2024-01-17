@@ -278,8 +278,6 @@ exports.getFullCourseDetails = async (req, res) => {
     })
   }
 }
-
-
 // getInstructor Courses 
 
 exports.getInstructorCourses = async (req, res) => {
