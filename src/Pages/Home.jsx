@@ -102,7 +102,7 @@ const Home = () => {
         </div>
 
         {/* section 2 */}
-        <div className='flex flex-col w-[11/12] bg-richblack-25'>
+        <div className='flex flex-col w-[11/12] bg-greys-5'>
         <div className=' h-[300px]' id='cross-section'>
         <div className='flex flex-row justify-center gap-9 mt-[130px]'>
           <Button active={true} linkto={"/signup"}>
