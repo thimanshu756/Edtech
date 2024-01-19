@@ -5,7 +5,11 @@ import TextColor from '../Components/Core/HomePage/TextColor';
 import Button from '../Components/Core/HomePage/Button';
 import bannerVideo from "../assets/Images/banner.mp4"
 import CodeBlocks from '../Components/Core/HomePage/CodeBlocks';
+import TimelineSection from '../Components/Core/HomePage/TimelineSection';
+
+
 const Home = () => {
+    
   return (
     <div>
         {/* Section 1 */}
@@ -19,7 +23,7 @@ const Home = () => {
             </div>
             </Link>
 
-            <div className='text-center text-3xl font-semibold mt-7'>
+            <div className='text-center text-4xl font-semibold mt-7'>
               Empower Your Future with <TextColor text= {"Coding Skills"}/>
             </div>             
             
@@ -71,7 +75,7 @@ const Home = () => {
                 <div>
                     Start
                     <TextColor text={" coding "}/> <br />
-                    <TextColor text={"  in seconds "}/>
+                    <TextColor text={" in seconds "}/>
                  </div>
             }
             para={"Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."}
@@ -82,7 +86,42 @@ const Home = () => {
             backgroundGradient={" bg-gradient-to-b from-[#1FA2FF] from-3.62% via-[#12D8FA] via-50.44% to-[#A6FFCB ] to-104.53%"}
             />
             </div>
+            {/* Extra div */}
+            <div className='h-[100px] '></div>
+
+            <div className='text-white text-4xl text-center'>
+            Unlock the  
+            <TextColor 
+            text={" Power of Code"}
+            />
+            </div>
+            <div className=' mt-2 text-xl text-center text-richblack-300 '>
+            Learn to Build Anything You Can Imagine
+            </div>
+            <div className='h-[100px] '></div>
         </div>
+
+        {/* section 2 */}
+        <div className='flex flex-col w-[11/12] bg-richblack-25'>
+        <div className=' h-[300px]' id='cross-section'>
+        <div className='flex flex-row justify-center gap-9 mt-[130px]'>
+          <Button active={true} linkto={"/signup"}>
+            <div className='flex flex-row gap-3 items-center'>
+            Explore Full Catalog 
+            <FaArrowRightLong/>
+            </div>
+          </Button>
+          <Button active={false} linkto={"/signup"}>
+            <div className='flex flex-row gap-3 items-center text-white '>
+            Learn More 
+          
+            </div>
+          </Button>
+        </div>
+        </div>
+            <TimelineSection/>
+        </div>
+   
     </div>
   )
 }
