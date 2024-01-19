@@ -36,7 +36,7 @@ const Home = () => {
                 Book a Demo 
                 </Button>
             </div>
-            <div className='w-[1035px] mt-11 relative left-14  '>
+            <div className='w-[11/12] mt-11 relative left-14  '>
                 <video src={bannerVideo}
                 muted 
                 loop
@@ -45,7 +45,7 @@ const Home = () => {
                 </video>
             </div>
 
-            <div className='w-[90%] relative left-16'>
+            <div className='w-[11/12] relative left-16'>
             <CodeBlocks 
             position={"flex-row"}
             heading={

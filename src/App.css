@@ -1,4 +1,8 @@
 /* write your css here */
+*{
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
 .textcolor{
    
     background: var(--Gradient-05, linear-gradient(118deg, #1FA2FF -3.62%, #12D8FA 50.44%, #A6FFCB 104.51%));
