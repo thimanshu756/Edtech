@@ -6,7 +6,7 @@ import Button from '../Components/Core/HomePage/Button';
 import bannerVideo from "../assets/Images/banner.mp4"
 import CodeBlocks from '../Components/Core/HomePage/CodeBlocks';
 import TimelineSection from '../Components/Core/HomePage/TimelineSection';
-
+import BecomeInstructorsection from '../Components/Core/HomePage/BecomeInstructorsection';
 
 const Home = () => {
     
@@ -119,9 +119,13 @@ const Home = () => {
           </Button>
         </div>
         </div>
-            <TimelineSection/>
+        <div className='mb-10'>
+                <TimelineSection/>
         </div>
-   
+        </div>
+            <div>
+            <BecomeInstructorsection/>
+            </div>
     </div>
   )
 }
