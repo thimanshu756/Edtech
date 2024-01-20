@@ -6,6 +6,9 @@ import logo2 from "../../../assets/TimeLineLogo/Logo2.svg"
 import logo3 from "../../../assets/TimeLineLogo/Logo3.svg"
 import logo4 from "../../../assets/TimeLineLogo/Logo4.svg"
 import timelineImage from "../../../assets/Images/TimelineImage.png"
+import compareWithOthersImg from "../../../assets/Images/Compare_with_others.svg"
+import knowyourProgressImg from "../../../assets/Images/Know_your_progress.svg"
+import planYourlessonImg from "../../../assets/Images/Plan_your_lessons.svg"
 const TimelineSection = () => {
     const TimelineData=[
         {
@@ -30,10 +33,10 @@ const TimelineSection = () => {
         }
     ]
   return (
-    <div>
-           <div className=' h-[auto] w-[11/12] relative '>
+    <div className='w-[11/12]'>
+           <div className=' h-[auto] relative '>
             <div className='flex flex-row gap-10 py-[90px] px-[120px] justify-around  h-fit'>
-             <div className='text-4xl font-semibold  h-[100px] w-[50%]'>
+             <div className='text-4xl font-semibold  h-fit overflow-hidden w-[50%]'>
              Get the skills you need for a <TextColor text={" job that is in demand."} />
              </div>
              <div className='w-[50%] '>
@@ -50,7 +53,7 @@ const TimelineSection = () => {
                
              </div>
             </div>
-            <div className='flex w-[11/12] gap-16 px-[120px]'>
+            <div className='flex flex-row  gap-16 px-[120px]'>
                 {/* Time line */}
                 <div>
                 {
@@ -74,17 +77,10 @@ const TimelineSection = () => {
                     })
                 }
                 </div>
-                <div>
-                    <img src={timelineImage} alt="" className='h-[546px]'/>
-                </div>
-            <div>
-                {/* green box */}
-           
-            </div>
-            
-            </div>
-       
-            <div className='bg-caribbeangreen-700 absolute  translate-x-[630px] -translate-y-20  flex p-[42px] gap-[52px] w-auto h-auto '>
+                <div className='relative'>
+                    <img src={timelineImage} alt="" className='h-fit object-cover h'/>
+                    <div className='bg-caribbeangreen-700 absolute  translate-x-[70px] -translate-y-20  flex p-[42px] gap-[52px] w-auto h-auto '>
+           {/* green box */}
                 <div className='flex gap-[24px]'>
                 <div className='text-white text-5xl font-bold'>10</div>
                 <div className=' text-caribbeangreen-500'>YEARS <br />EXPERIENCES</div>
@@ -95,6 +91,38 @@ const TimelineSection = () => {
              
                 <div className='text-caribbeangreen-500'>TYPES OF <br />COURSES</div> 
                 </div>
+            </div>
+            </div>
+            
+            </div>                    
+            
+            {/* Images section  */}
+                <div className='h-[70px]'></div>
+            <div className='w-[11/12]'>
+                {/* Heading section */}
+                <div className='text-center text-4xl font-semibold'>
+                Your swiss knife for <TextColor text={"learning any language"} /> 
+                </div>
+                <div className='text-richblack-700 text-center mt-2'>
+                Using spin making learning multiple languages easy. with 20+ languages realistic voice-over, <br /> progress tracking, custom schedule and more.
+                </div>
+                {/*  image section */}
+
+                <div className='flex justify-center flex-row translate-x-10'>
+                <img src={knowyourProgressImg} alt="" className='relative left-[100px]' />
+                <img src={compareWithOthersImg} alt="" className="z-40" />
+                <img src={planYourlessonImg} alt="" className='relative right-[140px] z-50' />
+                </div>
+
+                {/* Button  */}
+                <div className='w-fit flex flex-row relative left-[650px]'>
+                       <Button active={true} linkto={"/signup"}>
+                    <div>
+                        Learn More
+                    </div>
+                </Button>   
+                </div>
+          
             </div>
         </div>
     </div>
