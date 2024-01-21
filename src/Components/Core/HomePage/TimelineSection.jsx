@@ -77,8 +77,8 @@ const TimelineSection = () => {
                     })
                 }
                 </div>
-                <div className='relative'>
-                    <img src={timelineImage} alt="" className='h-fit object-cover h'/>
+                <div className='relative h-[600px]'>
+                    <img src={timelineImage} alt="" className=' h-fit object-cover h'/>
                     <div className='bg-caribbeangreen-700 absolute  translate-x-[70px] -translate-y-20  flex p-[42px] gap-[52px] w-auto h-auto '>
            {/* green box */}
                 <div className='flex gap-[24px]'>
@@ -87,7 +87,7 @@ const TimelineSection = () => {
                 </div>
                 <div className='w-[1px] h-[44px] border border-caribbeangreen-500'></div>
                 <div className='flex gap-[24px]'>
-                <div className='text-white text-5xl font-bold'>250</div>
+                <div className='text-white text-5xl font-bold h-14'>250</div>
              
                 <div className='text-caribbeangreen-500'>TYPES OF <br />COURSES</div> 
                 </div>

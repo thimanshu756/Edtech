@@ -23,7 +23,7 @@ const Home = () => {
             </div>
             </Link>
 
-            <div className='text-center text-4xl font-semibold mt-7'>
+            <div className='text-center text-4xl font-semibold mt-7 h-12'>
               Empower Your Future with <TextColor text= {"Coding Skills"}/>
             </div>             
             
@@ -40,13 +40,16 @@ const Home = () => {
                 Book a Demo 
                 </Button>
             </div>
-            <div className='w-[11/12] mt-11 relative left-14  '>
+            <div className=' h-[515px]  mt-11 relative  shadow-[15px_15px_20px_0px_#F5F5F5] '>
+                
                 <video src={bannerVideo}
                 muted 
                 loop
                 autoPlay
-                className='h-[515px]' >
+                className='h-[515px]  z-50  top-0' >
                 </video>
+        
+             
             </div>
 
             <div className='w-[11/12] relative left-16'>
@@ -89,7 +92,7 @@ const Home = () => {
             {/* Extra div */}
             <div className='h-[100px] '></div>
 
-            <div className='text-white text-4xl text-center'>
+            <div className='text-white text-4xl text-center h-12'>
             Unlock the  
             <TextColor 
             text={" Power of Code"}
