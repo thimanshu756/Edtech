@@ -7,7 +7,7 @@ import bannerVideo from "../assets/Images/banner.mp4"
 import CodeBlocks from '../Components/Core/HomePage/CodeBlocks';
 import TimelineSection from '../Components/Core/HomePage/TimelineSection';
 import BecomeInstructorsection from '../Components/Core/HomePage/BecomeInstructorsection';
-
+import Footer from '../Components/Core/Footer';
 const Home = () => {
     
   return (
@@ -128,6 +128,9 @@ const Home = () => {
         </div>
             <div>
             <BecomeInstructorsection/>
+            </div>
+            <div>
+                <Footer />
             </div>
     </div>
   )
