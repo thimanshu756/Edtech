@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div className=''>
         {/* Section 1 */}
-        <div className='relative mx-auto flex flex-col w-11/12 items-center text-white justify-between max-w-maxContent overflow-hidden '>
+        <div className='relative mx-auto my-8 flex flex-col w-11/12 items-center text-white justify-between  overflow-hidden z-10'>
             <Link to={"/signup"}>
             <div className='mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit group '>
                 <div className='flex  flex-row gap-4 items-center rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900'>
@@ -87,7 +87,7 @@ const Home = () => {
             button1={{buttonText:"Continue Lesson" , linkto:"/signup" ,active:true}}
             button2={{buttonText:"Learn More" , linkto:"/login" ,active:false}}
             codes={'<!DOCTYPE html> \n<head> \n <title> Example </title> \n <linkrel="stylesheet" href="styles.css"> \n </head> \n </body> \n <h1> <ahref="/">Header </a> \n </h1> \n <nav> <a href="one/"> One </a> \n <a href="two/"> Two </a> \n <a href="three/"> Three </a> \n </body> \n </html> '}
-            codeColor={"text-yellow-100"}
+            codeColor={"text-pink-300"}
             backgroundGradient={" bg-gradient-to-b from-[#1FA2FF] from-3.62% via-[#12D8FA] via-50.44% to-[#A6FFCB ] to-104.53%"}
             />
             </div>
@@ -98,9 +98,9 @@ const Home = () => {
 
         </div>
         {/* section 2 */}
-        <div className=' bg-greys-5 text-richblack-700'>
-        <div className=' h-[300px] '  id='cross-section' >
-        <div className='flex flex-row justify-center gap-9 mt-[130px]'>
+        <div className=' bg-greys-5 text-richblack-700 z-0'>
+        <div className=' h-[200px]'   id='cross-section' >
+        <div className='flex flex-row justify-center gap-9 mt-[80px]'>
           <Button active={true} linkto={"/signup"}>
             <div className='flex flex-row gap-3 items-center'>
             Explore Full Catalog 
