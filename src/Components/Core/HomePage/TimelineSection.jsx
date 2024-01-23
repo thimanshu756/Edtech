@@ -57,9 +57,9 @@ const TimelineSection = () => {
                 {/* Time line */}
                 <div>
                 {
-                    TimelineData.map((data)=>{
+                    TimelineData.map((data , index)=>{
                         return (
-                            <div>
+                            <div key={index}>
                             <div className='flex gap-10 py-[16px] px-[12px]'> 
                             <div className=' flex justify-center items-center rounded-full w-[52px] h-[52px] bg-white  '>
                                     <img src={data.img} alt="" />
@@ -70,7 +70,9 @@ const TimelineSection = () => {
                                 </div>
                             </div> 
                       {/*  */}
-                            <div className='h-[42px] border border-dotted relative left-9 w-0'></div> 
+                            <div   className={`hidden ${
+                    TimelineData.length - 1 === index ? "hidden" : "lg:block"
+                  }  h-14 border-dotted border-r border-richblack-100 bg-richblack-400/0 w-[35px]`}></div> 
                             </div>
                          
                         )
