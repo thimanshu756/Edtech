@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRightLong } from "react-icons/fa6";
+
 import TextColor from '../Components/Core/HomePage/TextColor';
 import Button from '../Components/Core/HomePage/Button';
 import bannerVideo from "../assets/Images/banner.mp4"
@@ -8,12 +9,13 @@ import CodeBlocks from '../Components/Core/HomePage/CodeBlocks';
 import TimelineSection from '../Components/Core/HomePage/TimelineSection';
 import BecomeInstructorsection from '../Components/Core/HomePage/BecomeInstructorsection';
 import Footer from '../Components/Core/Footer';
+import ExploreMore from '../Components/Core/HomePage/ExploreMore';
 const Home = () => {
     
   return (
-    <div>
+    <div className=''>
         {/* Section 1 */}
-        <div className='relative mx-auto flex flex-col w-11/12 items-center text-white justify-between '>
+        <div className='relative mx-auto flex flex-col w-11/12 items-center text-white justify-between max-w-maxContent overflow-hidden '>
             <Link to={"/signup"}>
             <div className='mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit group '>
                 <div className='flex  flex-row gap-4 items-center rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900'>
@@ -91,22 +93,13 @@ const Home = () => {
             </div>
             {/* Extra div */}
             <div className='h-[100px] '></div>
+   
+              <ExploreMore />
 
-            <div className='text-white text-4xl text-center h-12'>
-            Unlock the  
-            <TextColor 
-            text={" Power of Code"}
-            />
-            </div>
-            <div className=' mt-2 text-xl text-center text-richblack-300 '>
-            Learn to Build Anything You Can Imagine
-            </div>
-            <div className='h-[100px] '></div>
         </div>
-
         {/* section 2 */}
-        <div className='flex flex-col w-[11/12] bg-greys-5'>
-        <div className=' h-[300px]' id='cross-section'>
+        <div className=' bg-greys-5 text-richblack-700'>
+        <div className=' h-[300px] '  id='cross-section' >
         <div className='flex flex-row justify-center gap-9 mt-[130px]'>
           <Button active={true} linkto={"/signup"}>
             <div className='flex flex-row gap-3 items-center'>
@@ -122,10 +115,14 @@ const Home = () => {
           </Button>
         </div>
         </div>
+        <div>
+        
+        </div>
         <div className='mb-10'>
-                <TimelineSection/>
+        <TimelineSection/>
         </div>
         </div>
+  
             <div>
             <BecomeInstructorsection/>
             </div>
