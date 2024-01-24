@@ -8,7 +8,7 @@ import bannerVideo from "../assets/Images/banner.mp4"
 import CodeBlocks from '../Components/Core/HomePage/CodeBlocks';
 import TimelineSection from '../Components/Core/HomePage/TimelineSection';
 import BecomeInstructorsection from '../Components/Core/HomePage/BecomeInstructorsection';
-import Footer from '../Components/Core/Footer';
+import Footer from '../Components/Common/Footer';
 import ExploreMore from '../Components/Core/HomePage/ExploreMore';
 const Home = () => {
     
