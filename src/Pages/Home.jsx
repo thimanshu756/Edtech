@@ -126,9 +126,7 @@ const Home = () => {
             <div>
             <BecomeInstructorsection/>
             </div>
-            <div>
-                <Footer />
-            </div>
+         
     </div>
   )
 }
