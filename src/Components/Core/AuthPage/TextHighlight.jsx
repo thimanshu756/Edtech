@@ -1,8 +1,10 @@
 import React from 'react'
 
-const TextHighlight = () => {
+const TextHighlight = ({text}) => {
   return (
-    <div>TextHighlight</div>
+    <span className='text-blue-100 font-edu-sa '>
+        {text}
+    </span>
   )
 }
 
