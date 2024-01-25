@@ -7,14 +7,14 @@ const SignUp = () => {
   return (
     <div className=' w-11/12 bg-richblack-900 max-w-maxContent flex justify-between items-center p-10  mb-28 '>
         {/* form */}
-        <div className='flex w-[508px] p-[32px] flex-col gap-[36px] '>
+        <div className='flex w-[508px] p-[32px] flex-col gap-[16px] '>
         <div className=''>
             {
                     Instructor ? (<div className='flex flex-col gap-4 '>
                         <p className='text-richblack-5 font-inter text-4xl h-[50px] '>Welcome </p>
                         <p className='text-richblack-100 font-inter h-8 '>Discover your passions, <TextHighlight text={" Be Unstoppable "} /></p>
-                    </div>):(<div>
-                        <p className='text-richblack-5 font-inter text-3xl h-[150px] '> Join the millions learning to code with StudyNotion for free</p>
+                    </div>):(<div className='flex gap-2 flex-col'>
+                        <p className='text-richblack-5 font-inter text-3xl  '> Join the millions learning to code with StudyNotion for free</p>
                         <p className='text-richblack-100 font-inter h-20'>Build skills for today, tomorrow, and beyond.<TextHighlight text={" Education to future-proof your career."} /> </p>
                     </div>)
             }
