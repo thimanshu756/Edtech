@@ -2,8 +2,12 @@ import React from 'react'
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 const SignUpForm = ({userType,setAccountType,ACCOUNT_TYPE}) =>{
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [showPassword , setShowPassword]=useState(false);
 
   const [formData , setFormData]=useState({

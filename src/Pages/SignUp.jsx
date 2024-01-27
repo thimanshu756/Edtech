@@ -11,7 +11,7 @@ const SignUp = () => {
         <div className='flex w-[508px] p-[32px] flex-col gap-[16px] '>
         <div className=''>
             {
-                    accountType=="instructor" ? (<div className='flex flex-col gap-4 '>
+                    accountType=="Instructor" ? (<div className='flex flex-col gap-4 '>
                         <p className='text-richblack-5 font-inter text-4xl h-[50px] '>Welcome </p>
                         <p className='text-richblack-100 font-inter h-8 '>Discover your passions, <TextHighlight text={" Be Unstoppable "} /></p>
                     </div>):(<div className='flex gap-2 flex-col'>
