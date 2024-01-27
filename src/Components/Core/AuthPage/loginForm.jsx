@@ -4,10 +4,12 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { login } from "../../../services/operations/authApiControllers"
 
 const LoginForm = ({ userType, setAccountType, ACCOUNT_TYPE }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     const [showPassword, setShowPassword] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -24,7 +26,7 @@ const LoginForm = ({ userType, setAccountType, ACCOUNT_TYPE }) => {
     }
     const submitform = (e) => {
         e.preventDefault()
-        // dispatch(login(email, password, navigate))
+        dispatch(login(email, password, navigate))
 
         console.log("form data is -->", formData);
     }

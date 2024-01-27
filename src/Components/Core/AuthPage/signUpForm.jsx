@@ -37,7 +37,7 @@ const SignUpForm = ({userType,setAccountType,ACCOUNT_TYPE}) =>{
       }
 
       console.log("form data is -->",formData);
-        // Setting signup data to state
+    // Setting signup data to state
     // To be used after otp verification
     // dispatch(setSignupData(signupData))
     // Send OTP to user for verification
@@ -50,7 +50,6 @@ const SignUpForm = ({userType,setAccountType,ACCOUNT_TYPE}) =>{
       password: "",
       confirmPassword: "",
     })
-
     setAccountType(ACCOUNT_TYPE.STUDENT)
   }
     
@@ -102,7 +101,7 @@ Create Account
 </button>
 </form>
 </div>
-    </div>
+ </div>
   )
 }
 
