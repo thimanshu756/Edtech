@@ -2,9 +2,12 @@ import React from 'react'
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
  import { useState } from 'react';
- import Button from "../HomePage/Button"
-const Form = ({type, Instructor}) => {
+ 
+
+
+const LoginForm = ({type, Instructor}) => {
     const [showPassword , setShowPassword]=useState(false);
+
     const [formData , setFormData]=useState({
         firstName :"",
         lastName:"",
@@ -19,8 +22,7 @@ const Form = ({type, Instructor}) => {
           ...prevData,
           [e.target.name]: e.target.value,
         }))
-      }
-
+    }
       const submitform =(e)=>{
         e.preventDefault()
         console.log("form data is -->",formData);
@@ -109,5 +111,5 @@ const Form = ({type, Instructor}) => {
   )
 }
 
-export default Form
+export default LoginForm;
 

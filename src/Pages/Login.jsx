@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import TextHighlight from '../Components/Core/AuthPage/TextHighlight';
-import Form from '../Components/Core/AuthPage/Form';
+import LoginForm from '../Components/Core/AuthPage/signUpForm';
 import loginImg from "../assets/Images/login.webp"
 const Login = () => {
   const [Instructor , setInstructor]= useState(false);
@@ -25,7 +25,7 @@ const Login = () => {
            <div className= {`py-[6px] px-[18px] ${Instructor ? "text-richblack-5 bg-richblack-900 rounded-full " : "text-richblack-200"}`} onClick={()=>setInstructor(true)}>Instructor</div>
         </div>
         {/* form  */}
-          <Form type={"Login"} Instructor={Instructor}/>
+          <LoginForm type={"Login"} Instructor={Instructor}/>
         </div>
         {/* image */}
         <div className='relative right-2 shadow-[25px_20px_20px_0px_#F5F5F5]'>
