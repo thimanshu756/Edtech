@@ -26,7 +26,7 @@ const SignUp = () => {
            <div className= {`py-[6px] px-[18px] ${accountType=="Instructor" ? "text-richblack-5 bg-richblack-900 rounded-full " : "text-richblack-200"}`} onClick={()=>setAccountType(ACCOUNT_TYPE.INSTRUCTOR)}>Instructor</div>
         </div>
         {/* form  */}
-          <SignUpForm UserType={accountType} setAccountType={setAccountType} ACCOUNT_TYPE/>
+          <SignUpForm accountType={accountType} setAccountType={setAccountType} ACCOUNT_TYPE/>
         </div>
         {/* image */}
         <div className='relative right-2 shadow-[25px_20px_20px_0px_#F5F5F5]'>

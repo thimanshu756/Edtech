@@ -79,11 +79,53 @@ exports.signUp=async(req,res)=>{
         otp
     }= req.body;
     // validate the data
-    if(!firstName || !lastName||!email||!password||!confirmPassword||!accountType||!otp){
+    // if(!firstName || !lastName||!email||!password||!confirmPassword||!accountType||!otp){
+    //     return res.status(400).json({
+    //         success:false,
+    //         message:"please enter all the fields properly"
+    //     })
+    // }
+    if (!firstName) {
         return res.status(400).json({
             success:false,
-            message:"please enter all the fields properly"
-        })
+            message:"please enter first name"
+        }) 
+    }
+    if (!lastName) {
+        return res.status(400).json({
+            success:false,
+            message:"please enter last name"
+        }) 
+    }
+    if (!email) {
+        return res.status(400).json({
+            success:false,
+            message:"please enter email "
+        }) 
+    }
+    if (!password) {
+        return res.status(400).json({
+            success:false,
+            message:"please enter password "
+        }) 
+    }
+    if (!confirmPassword) {
+        return res.status(400).json({
+            success:false,
+            message:"please enter confirmpass "
+        }) 
+    }
+    if (!accountType) {
+        return res.status(400).json({
+            success:false,
+            message:"please enter accountType "
+        }) 
+    }
+    if (!otp) {
+        return res.status(400).json({
+            success:false,
+            message:"please enter otp "
+        }) 
     }
     // match the both password
     if(password!==confirmPassword){

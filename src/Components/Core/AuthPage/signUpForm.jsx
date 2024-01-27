@@ -4,7 +4,12 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-const SignUpForm = ({userType,setAccountType,ACCOUNT_TYPE}) =>{
+import { sendOtp } from '../../../services/operations/authApiControllers';
+import { setSignUpData } from '../../../Slices/authSlice';
+import { toast } from 'react-hot-toast';
+
+
+const SignUpForm = ({userType,setAccountType,accountType}) =>{
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -17,7 +22,7 @@ const SignUpForm = ({userType,setAccountType,ACCOUNT_TYPE}) =>{
       password:"",
       confirmPassword:""
   })
-  const { firstName, lastName, email, password, confirmPassword } = formData
+  const { firstName, lastName, email, password, confirmPassword  } = formData
 
   const handleOnChange = (e) => {
       setFormData((prevData) => ({
@@ -25,32 +30,36 @@ const SignUpForm = ({userType,setAccountType,ACCOUNT_TYPE}) =>{
         [e.target.name]: e.target.value,
       }))
     }
+
     const submitform =(e)=>{
+      console.log("inside signup handler");
       e.preventDefault()
       if (password !== confirmPassword) {
-        // toast.error("Passwords Do Not Match")
+        toast.error("Passwords Do Not Match")
         return
       }
       const signupData = {
         ...formData,
-        accountType:userType,
+        accountType,
       }
 
       console.log("form data is -->",formData);
+      console.log("Account type is -->",accountType);
+
     // Setting signup data to state
     // To be used after otp verification
-    // dispatch(setSignupData(signupData))
+    dispatch(setSignUpData(signupData))
     // Send OTP to user for verification
-    // dispatch(sendOtp(formData.email, navigate))
+    dispatch(sendOtp(formData.email, navigate))
 
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    })
-    setAccountType(ACCOUNT_TYPE.STUDENT)
+    // setFormData({
+    //   firstName: "",
+    //   lastName: "",
+    //   email: "",
+    //   password: "",
+    //   confirmPassword: "",
+    // })
+    // setAccountType(ACCOUNT_TYPE.STUDENT)
   }
     
   return (
@@ -70,7 +79,7 @@ const SignUpForm = ({userType,setAccountType,ACCOUNT_TYPE}) =>{
   {/* email form */}
   <div className='mb-4'>
   <p className='-mb-1 ml-2'>Email Address<sup className='text-pink-200 '>*</sup> </p> <br />
-  <input type="text" id='firstName' name='email' value={email}  onChange={handleOnChange} placeholder='Enter Email adress' className='bg-richblack-800 rounded-lg p-[12px] w-[440px]'/> 
+  <input type="text" id='email' name='email' value={email}  onChange={handleOnChange} placeholder='Enter Email adress' className='bg-richblack-800 rounded-lg p-[12px] w-[440px]'/> 
   </div>
   {/* password */}
   <div className='flex gap-10 mb-4'>

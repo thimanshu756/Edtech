@@ -5,6 +5,7 @@ import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
 import Footer from "./Components/Common/Footer";
 import Navbar from "./Components/Common/Navbar";
+import VerifyEmail from "./Pages/VerifyEmail";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="verify-email" element={<VerifyEmail/>}/>
       </Routes>
       <Footer/>
 

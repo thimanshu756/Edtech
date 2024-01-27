@@ -21,7 +21,7 @@ const Navbar = () => {
  const fetchSublinks = async()=>{
     try {
       const result = await apiconnector("GET",categories.CATEGORIES_API);
-      console.log("subliks are -->", result);
+      // console.log("subliks are -->", result);
       setSubLinks(result.data.data)
     } catch (error) {
       console.log("could not fetch the category data");
@@ -46,12 +46,12 @@ const subLinkss =[
 ]
 
   const matchRoute = (route)=>{
-    console.log("local token -->", localStorage.getItem("token"));
+    // console.log("local token -->", localStorage.getItem("token"));
     return matchPath(
       {path:route},location.pathname
     )
   } 
-  console.log("Navbar Links -->",NavbarLinks);
+  // console.log("Navbar Links -->",NavbarLinks);
   return (
     <div className='flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 '>
       <div className='flex w-11/12 max-w-maxContent items-center justify-between'>
@@ -65,7 +65,7 @@ const subLinkss =[
         <ul className='flex gap-6 text-richblack-25'>
         {
           NavbarLinks.map((link,i)=>{
-            console.log("link-->",link.title);
+            // console.log("link-->",link.title);
           return  <li key={i}>
               {
                 link.title == "Catalog" ? ( <div className='  flex items-center gap-1 group hover:cursor-pointer'>
@@ -80,7 +80,6 @@ const subLinkss =[
                {
                 subLinkss.length ? ( 
                     subLinkss?.map((subLink , index)=>{
-                      
                      return <Link to={`${subLink.link}`} key={index}>
                       <p className='text-richblack-900'> {subLink.title}</p>
                       </Link>
