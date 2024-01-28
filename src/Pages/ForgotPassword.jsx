@@ -2,7 +2,7 @@ import {React, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { forgotPasswordToken } from '../services/operations/authApiControllers';
-
+import { setEmailSent } from "../Slices/authSlice"
 const ForgotPassword = () => {
     const {loading}= useSelector((state)=>state.auth);
     const {emailSent}=useSelector((state)=>state.auth);
@@ -22,9 +22,10 @@ const ForgotPassword = () => {
                         <h1>Check email</h1>
                         <p>We have sent the reset email to {email}</p>
                         <button onClick={onSubmitHandler}>Resend Email</button>
-                        <Link to={"/login"}>
-                        Back to Login
+                        <Link to={"/login"} >
+                            Back to Login  
                         </Link>
+
                         </div> ):(
                             <div>
                             <h1>Reset your password</h1>

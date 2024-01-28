@@ -5,6 +5,7 @@ import { setUser } from "../../Slices/profileSlice"
 import { toast } from "react-hot-toast"
 import { endpoints } from "../apis"
 import { setEmailSent } from "../../Slices/authSlice"
+
 const {
     SENDOTP_API,
     SIGNUP_API,
@@ -12,9 +13,9 @@ const {
     RESETPASSTOKEN_API,
     RESETPASSWORD_API,
 
-  } = endpoints
+} = endpoints
 
-  export function sendOtp (email , navigate){
+export function sendOtp (email , navigate){
     return async(dispatch)=>{
         const toastId = toast.loading("Loading...")
         dispatch(setLoading(true));
@@ -37,7 +38,7 @@ const {
     }
   }
 
-  export function signUp(
+export function signUp(
     accountType,
     firstName,
     lastName,
@@ -117,7 +118,7 @@ export function login(email, password, navigate) {
     }
 }
 
-export function forgotPasswordToken(email ){
+export function forgotPasswordToken(email){
     return async(dispatch)=>{
         dispatch(setEmailSent(false))
         const toastId = toast.loading("Loading....")
@@ -139,5 +140,28 @@ export function forgotPasswordToken(email ){
         }        
         dispatch(setLoading(false))
         toast.dismiss(toastId)
+    }
+}
+
+export function resetPassword(password,confirmPassword,token,setResetComplete){
+   return async(dispatch)=>{
+        const toastId = toast.loading("Loading....")
+        dispatch(setLoading(true));
+        try {
+            const response = await apiconnector("POST",RESETPASSWORD_API,{
+                token,password,confirmPassword
+            })
+            if(!response.data.success){
+                throw new Error(response.data.message)
+            }
+            toast.success("Password Updated Successfully")
+            setResetComplete(true);
+        } catch (error) {
+            console.log("Resetpassword API ERROR....",error);
+            toast.error("Could Not Reset the Password")
+        }
+         dispatch(setLoading(false))
+        toast.dismiss(toastId)
+       
     }
 }

@@ -7,6 +7,7 @@ import Footer from "./Components/Common/Footer";
 import Navbar from "./Components/Common/Navbar";
 import VerifyEmail from "./Pages/VerifyEmail";
 import ForgotPassword from "./Pages/ForgotPassword";
+import UpdatePassword from "./Pages/UpdatePassword";
 
 function App() {
   return (
@@ -18,10 +19,9 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="verify-email" element={<VerifyEmail/>}/>
         <Route path="forgot-password" element={<ForgotPassword/>}/>
-      
+        <Route path="update-password/:id" element={<UpdatePassword/>}/>
       </Routes>
       <Footer/>
-
     </div>
   );
 }

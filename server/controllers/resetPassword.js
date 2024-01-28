@@ -54,22 +54,24 @@ exports.resetPasswordToken=async(req,res)=>{
 exports.resetPassword=async(req,res)=>{
     try {
     const {password,confirmPassword,token}=req.body;
-        
     //validation
     if (!password||!confirmPassword||!token) {
         return res.Status(401).json({
-            sucess:false,
+            success:false,
             message:"Fill all the fields properly"
         })
     }
+    // console.log("token is -->",token);
+    // console.log("Finding user details");
     // get userdetails from db using token
     const userDetails = await User.findOne({token:token});
+    // console.log("User details found -->",userDetails);
     // no entry if token is expired
-    console.log("date is --->",userDetails.resetPasswordExpires);
-    console.log(" my date is --->",Date.now());
-    if (userDetails.resetPasswordExpires>Date.now()){
+    // console.log("date is --->",userDetails.resetPasswordExpires);
+    // console.log(" my date is --->",Date.now());
+    if (!(userDetails.resetPasswordExpires>Date.now())){
         return res.status(401).json({
-            sucess:false,
+            success:false,
             message:"Token expired ! please try again"
         })
     }
@@ -78,12 +80,14 @@ exports.resetPassword=async(req,res)=>{
     // update the password
     const userUpdated= await User.findOneAndUpdate({token:token},{password:hashedPass},{new:true});
     return res.status(200).json({
-        sucess:true,
+        success:true,
         message:"Password changed sucessfully"
     })
     } catch (error) {
+        // console.log("error is -->",error);
         return res.status(500).json({
-            sucess:false,
+            error:error.message,
+            success:false,
             message:"Getting error in updating the password"
         })
     }
