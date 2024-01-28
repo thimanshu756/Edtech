@@ -96,8 +96,7 @@ const subLinkss =[
                   <p className={`${matchRoute(link.path) ? " text-yellow-25":" text-richblack-25"}`}> {link.title} </p>
                   </Link>
                   </div>
-                
-                )
+)
               }
             </li>
           })

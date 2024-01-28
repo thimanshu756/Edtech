@@ -26,7 +26,7 @@ const {
                 throw new Error(response.data.message)
             }
             toast.success("OTP Sent Successfully")
-            navigate("/verify-email")
+            navigate("/login")
         } catch (error) {
             console.log("SENDOTP API ERROR....",error);
             toast.error("Could Not send OTP")

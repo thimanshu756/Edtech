@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { sendOtp } from '../../../services/operations/authApiControllers';
 import { setSignUpData } from '../../../Slices/authSlice';
 import { toast } from 'react-hot-toast';
+import { ACCOUNT_TYPE } from '../../../utils/constants';
 
 
 const SignUpForm = ({userType,setAccountType,accountType}) =>{
@@ -52,14 +53,14 @@ const SignUpForm = ({userType,setAccountType,accountType}) =>{
     // Send OTP to user for verification
     dispatch(sendOtp(formData.email, navigate))
 
-    // setFormData({
-    //   firstName: "",
-    //   lastName: "",
-    //   email: "",
-    //   password: "",
-    //   confirmPassword: "",
-    // })
-    // setAccountType(ACCOUNT_TYPE.STUDENT)
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    })
+    setAccountType(ACCOUNT_TYPE.STUDENT)
   }
     
   return (

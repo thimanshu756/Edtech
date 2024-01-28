@@ -21,11 +21,7 @@ const Login = () => {
                     </div>)
             }
         </div>
-          {/* slider */}
-          <div className=' bg-richblack-800 w-[200px] flex  rounded-full p-[4px] transition-all duration-200'>
-           <div className= {`py-[6px] px-[18px] ${accountType=="Student"? " text-richblack-5 bg-richblack-900 rounded-full" : "text-richblack-200  "}`} onClick={()=>setAccountType(ACCOUNT_TYPE.STUDENT)} >Student</div>
-           <div className= {`py-[6px] px-[18px] ${accountType=="Instructor" ? "text-richblack-5 bg-richblack-900 rounded-full " : "text-richblack-200"}`} onClick={()=>setAccountType(ACCOUNT_TYPE.INSTRUCTOR)}>Instructor</div>
-        </div>
+   
         {/* form  */}
           <LoginForm UserType={accountType} setAccountType={setAccountType} ACCOUNT_TYPE/>
         </div>
