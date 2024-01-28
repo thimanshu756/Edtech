@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from "../../../services/operations/authApiControllers"
 import { Link } from 'react-router-dom';
-const LoginForm = ({ userType, setAccountType, ACCOUNT_TYPE }) => {
+const LoginForm = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 

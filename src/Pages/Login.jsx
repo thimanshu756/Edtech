@@ -23,7 +23,7 @@ const Login = () => {
         </div>
    
         {/* form  */}
-          <LoginForm UserType={accountType} setAccountType={setAccountType} ACCOUNT_TYPE/>
+          <LoginForm />
         </div>
         {/* image */}
         <div className='relative right-2 shadow-[25px_20px_20px_0px_#F5F5F5]'>

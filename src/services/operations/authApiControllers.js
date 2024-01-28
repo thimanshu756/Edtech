@@ -4,6 +4,7 @@ import { setToken } from "../../Slices/authSlice"
 import { setUser } from "../../Slices/profileSlice"
 import { toast } from "react-hot-toast"
 import { endpoints } from "../apis"
+import { setEmailSent } from "../../Slices/authSlice"
 const {
     SENDOTP_API,
     SIGNUP_API,
@@ -111,6 +112,31 @@ export function login(email, password, navigate) {
           toast.error("Login Failed")
         }
 
+        dispatch(setLoading(false))
+        toast.dismiss(toastId)
+    }
+}
+
+export function forgotPasswordToken(email ){
+    return async(dispatch)=>{
+        dispatch(setEmailSent(false))
+        const toastId = toast.loading("Loading....")
+        dispatch(setLoading(true));
+        try {
+            const result = await apiconnector("POST",RESETPASSTOKEN_API,{
+                email
+            })
+            console.log("email sent successfully->",result);
+            console.log(result.data.success);
+            if (!result.data.success) {
+                throw new Error(result.data.message)
+            }
+            toast.success("OTP Sent Successfully")
+            dispatch(setEmailSent(true))
+        } catch (error) {
+            console.log("SendEmail API ERROR....",error);
+            toast.error("Could Not send Email")
+        }        
         dispatch(setLoading(false))
         toast.dismiss(toastId)
     }

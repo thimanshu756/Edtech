@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import Footer from "./Components/Common/Footer";
 import Navbar from "./Components/Common/Navbar";
 import VerifyEmail from "./Pages/VerifyEmail";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="verify-email" element={<VerifyEmail/>}/>
+        <Route path="forgot-password" element={<ForgotPassword/>}/>
+      
       </Routes>
       <Footer/>
 
