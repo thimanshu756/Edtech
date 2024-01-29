@@ -22,3 +22,14 @@
 
 }
 textarea, input { outline: none; }
+
+/* .profiledropdown{
+    position: absolute;
+    top: 118%;
+    z-index: 1000;
+
+}
+.profilebutton{
+    position: relative;
+    z-index: 555;
+} */

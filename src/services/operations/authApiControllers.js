@@ -28,7 +28,7 @@ export function sendOtp (email , navigate){
                 throw new Error(response.data.message)
             }
             toast.success("OTP Sent Successfully")
-            navigate("/login")
+            navigate("/verify-email")
         } catch (error) {
             console.log("SENDOTP API ERROR....",error);
             toast.error("Could Not send OTP")
@@ -65,10 +65,10 @@ export function signUp(
 
                     if (!response.data.success) {
                         throw new Error(response.data.message)
-                      }
+                    }
 
                     toast.success("Sign Up Successfully");
-                    navigate("/verify-otp")
+                    navigate("/login")
 
                 } catch (error) {
                     console.log("Gettong error in SignUp api handler",error);
@@ -163,5 +163,17 @@ export function resetPassword(password,confirmPassword,token,setResetComplete){
          dispatch(setLoading(false))
         toast.dismiss(toastId)
        
+    }
+}
+
+export function logout(navigate){
+    return (dispatch) => {
+        dispatch(setToken(null))
+        dispatch(setUser(null))
+        // dispatch(resetCart())
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        toast.success("Logged Out")
+        navigate("/")
     }
 }
