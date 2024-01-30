@@ -16,7 +16,29 @@
     z-index: 10;
 
 }
-
+.orangeTextColor{
+    background: var(--Gradient-05, linear-gradient(118deg, #FF512F -4.8%, #F09819 107.46%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.yellowTextcolor{
+    background: var(--Gradient-05, linear-gradient(118deg, #E65C00 -6.05%, #F9D423 106.11%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.headingTextColor{
+    background: var(--Gradient-05, linear-gradient(118deg, #833AB4 -2.4%, #FD1D1D 52.25%, #FCB045 106.89%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;   
+}
+.gradient-about{
+    width: 372.949px;
+    height: 257.054px;
+    border-radius: 372.949px;
+    opacity: 0.2;
+    background: var(--Gradient-09, linear-gradient(118deg, #EC008C -0.91%, #FC6767 104.91%));
+    filter: blur(34px);
+}
 .card{
   z-index: 50;
 

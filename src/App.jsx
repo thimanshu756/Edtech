@@ -10,13 +10,14 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import UpdatePassword from "./Pages/UpdatePassword";
 import OpenRoute from "./Components/Core/AuthAcesses/OpenRoute";
 import PrivateRoute from "./Components/Core/AuthAcesses/PrivateRoute";
+import AboutUs from "./Pages/AboutUs";
 function App() {
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
-
+        <Route path="/about" element={<AboutUs/>}/>
         <Route path="/signup" element={
         <OpenRoute>
             <SignUp/>

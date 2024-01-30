@@ -7,7 +7,9 @@ const PrivateRoute = ({children}) => {
 
     if (token != null) {
         return children
-    }else{
+    }
+    else
+    {
         return(
             <Navigate to="/login"></Navigate>
         )
