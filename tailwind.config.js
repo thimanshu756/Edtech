@@ -2,6 +2,19 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    screens: {
+      'xxs':'320px',
+      'xs':'375px',
+
+      'sm': '576px',
+      // => @media (min-width: 576px) { ... }
+
+      'md': '960px',
+      // => @media (min-width: 960px) { ... }
+
+      'lg': '1440px',
+      // => @media (min-width: 1440px) { ... }
+    },
     fontFamily: {
       inter: ['Inter', 'sans-serif'],
       'edu-sa': ['Edu SA Beginner', 'cursive'],
@@ -130,6 +143,9 @@ module.exports = {
         maxContentTab: '650px',
       },
     },
+   
   },
+  
   plugins: [],
 };
+

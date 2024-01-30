@@ -25,10 +25,10 @@ const UpdatePassword = () => {
         dispatch(resetPassword(password,confirmPassword,token,setResetComplete))
     }
   return (
-    <div className='text-white'>
+    <div className='text-white h-[100vh] w-auto  flex flex-col justify-center items-center gap-9'>
         {
             loading ? ( <div>Loading.....</div> ):(
-                resetComplete ?(<div>
+                resetComplete ?(<div className='flex gap-5 flex-col'>
                     <h1>Reset complete!</h1>
                     <p>All done! You have successfully updated your password</p>
                     <button>Return To Login</button>
