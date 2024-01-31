@@ -6,8 +6,7 @@ import img3 from "../assets/Images/aboutus3.webp"
 import img4 from "../assets/Images/FoundingStory.png"
 import Stats from '../Components/Core/AboutUs/Stats'
 import LearningGrid from '../Components/Core/AboutUs/LearningGrid'
-import ContactusForm from '../Components/Common/ContactusForm'
-
+import ContactUs from '../Components/Core/AboutUs/ContactUs'
 const AboutUs = () => {
   return (
     <div className=' '>
@@ -61,7 +60,7 @@ const AboutUs = () => {
         <div>
             <LearningGrid/>
         </div>
-        <ContactusForm/>
+        <ContactUs/>
     </div>
   )
 }
