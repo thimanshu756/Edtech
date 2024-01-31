@@ -5,6 +5,7 @@ import img2 from "../assets/Images/aboutus2.webp"
 import img3 from "../assets/Images/aboutus3.webp"
 import img4 from "../assets/Images/FoundingStory.png"
 import Stats from '../Components/Core/AboutUs/Stats'
+import LearningGrid from '../Components/Core/AboutUs/LearningGrid'
 
 const AboutUs = () => {
   return (
@@ -55,6 +56,9 @@ const AboutUs = () => {
         {/* Section 3 */}
         <div>
             <Stats/>
+        </div>
+        <div>
+            <LearningGrid/>
         </div>
     </div>
   )
