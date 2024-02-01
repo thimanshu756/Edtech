@@ -9,15 +9,15 @@ import LearningGrid from '../Components/Core/AboutUs/LearningGrid'
 import ContactUs from '../Components/Core/AboutUs/ContactUs'
 const AboutUs = () => {
   return (
-    <div className=' '>
-        {/* section 1 */}
+    <div className=''>
+     {/* section 1 */}
         <div className=' bg-richblack-800 mb-36 h-[500px]'>
             <div className='flex flex-col gap-7 items-center text-white mt-6 w-11/12 mx-auto relative'>
             <p className='text-richblack-100'>About Us</p>
             <h1 className='text-4xl lg:w-[913px] text-center h-[100px] lg:px-[52px]'>Driving Innovation in Online Education for a <TextColor text={" Brighter Future"}/></h1>
             <p className='text-richblack-100 text-center lg:w-[913px] lg:px-[52px]'>Studynotion is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.</p>
             </div>
-            <div className="grid grid-cols-3 gap-4 w-11/12 mx-auto absolute h-[330px] lg:left-24 top-[400px] ">
+            <div className="grid grid-cols-3 gap-4 border w-11/12 mx-auto absolute lg:h-[350px] top-[400px] ">
                 <img src={img1} alt="" className='h-[330px] w-[384px]'/>
                 <img src={img2} alt=""  className='h-[330px] w-[384px]'/>
                 <img src={img3} alt=""  className='h-[330px] w-[384px]'/>
