@@ -27,4 +27,6 @@ const Sidebar = () => {
   )
 }
 
+// more comment added lol
+
 export default Sidebar
