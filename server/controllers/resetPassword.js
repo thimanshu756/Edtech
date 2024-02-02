@@ -69,6 +69,7 @@ exports.resetPassword=async(req,res)=>{
     // no entry if token is expired
     // console.log("date is --->",userDetails.resetPasswordExpires);
     // console.log(" my date is --->",Date.now());
+    // getting some error here look at it
     if (!(userDetails.resetPasswordExpires>Date.now())){
         return res.status(401).json({
             success:false,
