@@ -12,6 +12,7 @@ import OpenRoute from "./Components/Core/AuthAcesses/OpenRoute";
 import PrivateRoute from "./Components/Core/AuthAcesses/PrivateRoute";
 import AboutUs from "./Pages/AboutUs";
 import Dashboard from "./Pages/Dashboard";
+import MyProfile from "./Components/Core/Dashboard/MyProfile";
 function App() {
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
@@ -51,7 +52,7 @@ function App() {
         </PrivateRoute>
        } 
       >
-        <Route path=""/>
+        <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
         </Route>
       </Routes>
       <Footer/>
