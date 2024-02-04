@@ -6,7 +6,7 @@ import SidebarLink from './SidebarLink';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../../services/operations/authApiControllers';
 import { VscSignOut } from 'react-icons/vsc';
-
+import ConfirmationModal from '../../Common/ConfirmationModal';
 const Sidebar = () => {
     const{loading :authLoading}= useSelector((state)=>state.auth);
     const {user,loading :profileLoading}=useSelector((state)=>state.profile);
@@ -43,8 +43,8 @@ const Sidebar = () => {
                 setConfimationModal({
                   text1 : "Are you sure?",
                   text2 : "You will be logged out of your account.",
-                  bt1Text:"Logout",
-                  bt2Text:"Cancel",
+                  btn1Text:"Logout",
+                  btn2Text:"Cancel",
                   btn1Handler: ()=> dispatch(logout(navigate)),
                   btn2Handler :()=> setConfimationModal(null)
                 })
@@ -57,7 +57,7 @@ const Sidebar = () => {
                 </div>
               </button>
             </div>
-
+            {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
        
         </div>
   )
