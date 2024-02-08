@@ -7,19 +7,26 @@ exports.auth=async(req,res,next)=>{
 
     try {
         console.log("inside auth");
-    const token = req.cookies.token||req.body.token||req.header("Authorization").replace("Bearer","");
+    const token = req.cookies.token||req.body.token||req.header("Authorization").replace("Bearer ","");
     
+    console.log("Token is {} -->",token);
+
     if(!token){
         return res.status(500).json({
             message:"Token is missing",
             sucess:false
         })
     }
+
     try {
        // verify the token
-    const decode = await jwt.verify(token,process.env.JWT_SECRET);
-    req.user=decode;   
+       console.log("Secret 1 is -->",process.env.JWT_SECRET);
+    const decode = await jwt.verify(token , process.env.JWT_SECRET);
+    console.log("Secret is -->",process.env.JWT_SECRET);
+    req.user=decode;
+    console.log("Decode is -->",decode);
     } catch (error) {
+        console.log("The error is -->",error);
         return res.status(401).json({
             message:"Token is wrong",
             sucess:false

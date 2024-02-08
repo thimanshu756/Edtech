@@ -129,6 +129,7 @@ exports.getUserDetails=async(req,res)=>{
 }
 exports.updateDisplayPicture = async (req, res) => {
     try {
+    
         const displayPicture = req.files.displayPicture
         const userId = req.user.id
         const image = await uploadImageToCloudinary(
@@ -152,6 +153,7 @@ exports.updateDisplayPicture = async (req, res) => {
         return res.status(500).json({
           success: false,
           message: error.message,
+          error:"getting...."
         })
       }
 
