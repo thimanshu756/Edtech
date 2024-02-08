@@ -3,41 +3,56 @@ const User= require("../models/Users")
 const { uploadImageToCloudinary } = require("../utils/imageUploader")
 
 
-//updateprofile
 
-exports.updateProfile= async(req,res)=>{
-
+exports.updateProfile = async (req, res) => {
     try {
-    // get data
-        const {dateOfBirth="",about="",contactNumber,gender}=req.body;
-        // get user id
-        const ID = req.user.id;
-        // find the profile
-
-        const userDetails = await User.findById(ID);
-        const profileID = userDetails.additionalDetails;
-        const profileDetails = await Profile.findById(profileID);
-
-        profileDetails.dateOfBirth=dateOfBirth;
-        profileDetails.about=about;
-        profileDetails.gender=gender;
-        profileDetails.contactNumber=contactNumber;
-        await profileDetails.save();
-
-        return res.status(200).json({
-            message:"profile updated successfully ",
-            success:true,
-            profileDetails:profileDetails
-        })
+      const {
+        firstName = "",
+        lastName = "",
+        dateOfBirth = "",
+        about = "",
+        contactNumber = "",
+        gender = "",
+      } = req.body
+      const id = req.user.id
+  
+      // Find the profile by id
+      const userDetails = await User.findById(id)
+      const profile = await Profile.findById(userDetails.additionalDetails)
+  
+      const user = await User.findByIdAndUpdate(id, {
+        firstName,
+        lastName,
+      })
+      await user.save()
+  
+      // Update the profile fields
+      profile.dateOfBirth = dateOfBirth
+      profile.about = about
+      profile.contactNumber = contactNumber
+      profile.gender = gender
+  
+      // Save the updated profile
+      await profile.save()
+  
+      // Find the updated user details
+      const updatedUserDetails = await User.findById(id)
+        .populate("additionalDetails")
+        .exec()
+  
+      return res.json({
+        success: true,
+        message: "Profile updated successfully",
+        updatedUserDetails,
+      })
     } catch (error) {
-        return res.status(500).json({
-            message:"profile canot be updates",
-            success:false,
-            
-        })  
+      console.log(error)
+      return res.status(500).json({
+        success: false,
+        error: error.message,
+      })
     }
-}
-
+  }
 // deleteaccount
 
 exports.deleteProfile=async(req,res)=>{
