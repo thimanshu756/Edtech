@@ -13,6 +13,8 @@ import PrivateRoute from "./Components/Core/AuthAcesses/PrivateRoute";
 import AboutUs from "./Pages/AboutUs";
 import Dashboard from "./Pages/Dashboard";
 import MyProfile from "./Components/Core/Dashboard/MyProfile";
+import Settings from "./Components/Core/Dashboard/Settings";
+
 function App() {
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
@@ -53,6 +55,8 @@ function App() {
        } 
       >
         <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
+        <Route path="/dashboard/settings" element={<Settings/>}/>
+
         </Route>
       </Routes>
       <Footer/>
