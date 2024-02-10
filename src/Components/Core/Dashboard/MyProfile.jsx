@@ -75,7 +75,7 @@ const MyProfile = () => {
         <div className='flex justify-between w-[60%]'>
           <div>
             <p className='text-richblack-300'>About</p>
-            <p className='text-richblack-5 text-lg'>{user.additionalDetails.about ==null ? ("Change The Bio"):(`${user.additionalDetails.dateOfBirth}`)}</p> 
+            <p className='text-richblack-5 text-lg'>{user.additionalDetails.about ==null ? ("Change The Bio"):(`${user.additionalDetails.about}`)}</p> 
           </div>
         </div>
         <div className='flex justify-between w-[71%]'>
