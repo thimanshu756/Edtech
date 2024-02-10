@@ -14,6 +14,7 @@ import AboutUs from "./Pages/AboutUs";
 import Dashboard from "./Pages/Dashboard";
 import MyProfile from "./Components/Core/Dashboard/MyProfile";
 import Settings from "./Components/Core/Dashboard/Settings";
+import EnrolledCourses from "./Components/Core/Dashboard/EnrolledCourses";
 
 function App() {
   return (
@@ -56,7 +57,7 @@ function App() {
       >
         <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
         <Route path="/dashboard/settings" element={<Settings/>}/>
-
+        <Route path="/dashboard/enrolled-courses" element={<EnrolledCourses/>} />
         </Route>
       </Routes>
       <Footer/>
