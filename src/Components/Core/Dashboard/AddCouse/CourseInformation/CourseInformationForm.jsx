@@ -11,7 +11,7 @@ import {
 } from "../../../../../services/operations/courseDetailsAPI"
 import { setCourse, setStep } from "../../../../../Slices/courseSlice"
 import { COURSE_STATUS } from "../../../../../utils/constants"
-import IconBtn from "../../../../common/IconBtn"
+import IconBtn from "../../../../Common/IconBtn"
 import Upload from "../Upload"
 import ChipInput from "./ChipInput"
 import RequirementsField from "./RequirementField"
@@ -44,12 +44,12 @@ const CourseInformationForm = () => {
         }
         // agr form edit mode me hai
 
-        if (editCourse) {
+        if(editCourse){   
             setValue("courseTitle", course.courseName)
             setValue("courseShortDesc", course.courseDescription)
-            setValue("coursePrice", course.price),
-                setValue("courseTags", course.Tag),
-                setValue("courseBenefits", course.whatYouWillLearn)
+            setValue("coursePrice", course.price)
+            setValue("courseTags", course.Tag)
+            setValue("courseBenefits", course.whatYouWillLearn)
             setValue("courseCategory", course.category)
             setValue("courseRequirements", course.instructions)
             setValue("courseImage", course.thumbnail)
