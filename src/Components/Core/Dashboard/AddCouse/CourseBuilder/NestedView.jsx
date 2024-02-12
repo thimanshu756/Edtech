@@ -50,6 +50,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
     setConfirmationModal(null)
   }
 
+  console.log("course.coursecontent-->", course);
   return (
     <>
       <div

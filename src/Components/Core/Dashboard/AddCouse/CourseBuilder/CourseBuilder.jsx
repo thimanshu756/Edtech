@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { IoAddCircleOutline } from "react-icons/io5"
@@ -58,7 +58,7 @@ export default function CourseBuilderForm() {
       )
     }
     if (result) {
-      // console.log("section result", result)
+      console.log("section result", result)
       dispatch(setCourse(result))
       setEditSectionName(null)
       setValue("sectionName", "")
@@ -71,6 +71,7 @@ export default function CourseBuilderForm() {
     setValue("sectionName", "")
   }
 
+ 
   const handleChangeEditSectionName = (sectionId, sectionName) => {
     if (editSectionName === sectionId) {
       cancelEdit()
