@@ -18,6 +18,7 @@ import EnrolledCourses from "./Components/Core/Dashboard/EnrolledCourses";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import AddCourse from "./Components/Core/Dashboard/AddCouse";
+import CoursesTable from "./Components/Core/Dashboard/InstructorCourses/CoursesTable";
 function App() {
 
   const dispatch = useDispatch();
@@ -72,7 +73,11 @@ function App() {
 
           {
             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+              <>
               <Route path="/dashboard/add-course" element={<AddCourse />} />
+              <Route path="/dashboard/my-courses" element={<CoursesTable />} />    
+              </>
+       
             )
           }
         </Route>
