@@ -1,6 +1,6 @@
 const Section = require("../models/Section")
 const Course = require("../models/Course")
-
+const SubSection= require("../models/SubSection")
 exports.createSection = async (req, res) => {
 
     try {
@@ -54,7 +54,7 @@ exports.updateSection = async (req, res) => {
     try {
         // fetch data
         const { sectionName, sectionId, courseId } = req.body;
-
+        console.log("courseId in update section -->",courseId);
         // validate
         if (!sectionName || !sectionId) {
             return res.status(401).json({
@@ -63,20 +63,24 @@ exports.updateSection = async (req, res) => {
         }
         // update section
         const updatedSection = await Section.findByIdAndUpdate(sectionId, { sectionName }, { new: true });
-        const course = Course.findById(courseId)
+        const course =await Course.findById(courseId)
             .populate({
                 path: "courseContent",
                 populate: {
                     path: "subSection"
                 }
             }).exec();
-
+        
         // return response
-
+        if (!course) {
+            return res.status(401).json({
+                message: "course not found"
+            })
+        }
         return res.status(200).json({
             message: "Section updated successfully ",
             success: true,
-            data: course
+            data:course
         })
     } catch (error) {
         return res.status(500).json({
@@ -92,13 +96,14 @@ exports.updateSection = async (req, res) => {
 exports.deleteSection = async (req, res) => {
 
     try {
-        const { sectionId, courseId } = req.params;
+        const { sectionId, courseId } = req.body;
 
         await Course.findByIdAndUpdate(courseId, {
             $pull: {
                 courseContent: sectionId,
             }
         })
+        console.log("section id in delete -->",sectionId);
         const section = await Section.findById(sectionId);
 
         if (!section) {

@@ -28,6 +28,7 @@ const CourseInformationForm = () => {
 
     const dispatch = useDispatch();
     const { token } = useSelector((state) => state.auth)
+    console.log("token is -->",token);
     const { course, editCourse } = useSelector((state) => state.course)
     const [loading, setLoading] = useState(false)
     const [courseCategories, setCourseCategories] = useState([]);
@@ -145,6 +146,7 @@ const CourseInformationForm = () => {
         formData.append("thumbnailImage", data.courseImage)
         setLoading(true)
         const result = await addCourseDetails(formData, token)
+        console.log("result in  courseInformation -->",result);
         if (result) {
             dispatch(setStep(2))
             dispatch(setCourse(result))

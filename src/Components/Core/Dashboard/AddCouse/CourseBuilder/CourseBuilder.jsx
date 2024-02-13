@@ -26,6 +26,7 @@ export default function CourseBuilderForm() {
   } = useForm()
 
   const { course } = useSelector((state) => state.course)
+  console.log("couurse",course);
   const { token } = useSelector((state) => state.auth)
   const [loading, setLoading] = useState(false)
   const [editSectionName, setEditSectionName] = useState(null)
@@ -99,7 +100,7 @@ export default function CourseBuilderForm() {
     dispatch(setStep(1))
     dispatch(setEditCourse(true))
   }
-
+  console.log("content iss -->",course.courseContent);
   return (
     <div className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
       <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>

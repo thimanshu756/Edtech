@@ -180,6 +180,7 @@ export const updateSection = async (data, token) => {
   let result = null
   const toastId = toast.loading("Loading...")
   try {
+ 
     const response = await apiconnector("POST", UPDATE_SECTION_API, data, {
       Authorization: `Bearer ${token}`,
     })
@@ -221,6 +222,7 @@ export const updateSubSection = async (data, token) => {
 
 // delete a section
 export const deleteSection = async (data, token) => {
+  console.log("data in delete section -->",data);
   let result = null
   const toastId = toast.loading("Loading...")
   try {
