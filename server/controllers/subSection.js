@@ -1,5 +1,5 @@
 const SubSection= require("../models/SubSection");
-const { uploadToCloudinary } = require("../utils/imageUploader");
+const { uploadImageToCloudinary } = require("../utils/imageUploader");
 require("dotenv").config();
 const Section= require("../models/Section");
 
@@ -10,23 +10,27 @@ exports.createSubSection= async(req,res)=>{
         const {sectionId,title,timeDuration,description}=req.body;
 
         // extract file video
-        const video = req.files.videoFile;
+        const video = req.files.video;
         
+        console.log("section Id -->",sectionId);
+        console.log("section title -->",title);
+        console.log("section description -->",description);
+        console.log("video -->",video);
         // validate 
-        if (!sectionId||!title||!timeDuration||!description||!video) {
+        if (!sectionId||!title||!description||!video) {
             return res.status(401).json({
                 message:"Plese enter all the fields properly",
                 success:false
             })
         }
         // upload video to cloudinary
-        const uploadDetails = await uploadToCloudinary(video,process.env.FOLDER_NAME);
+        const uploadDetails = await uploadImageToCloudinary(video,process.env.FOLDER_NAME);
 
         // create a subsection
 
         const subSectionDetails= await SubSection.create({
             title:title,
-            timeDuration:timeDuration,
+            // timeDuration:timeDuration,
             description:description,
             videoUrl:uploadDetails.secure_url
         })
@@ -38,12 +42,14 @@ exports.createSubSection= async(req,res)=>{
                     subSection:subSectionDetails._id,
                 }
             },{new:true}
-        )
+        ).populate("subSection")
         return res.status(200).json({
             message:"SubSection created successfully ",
-            success:true
+            success:true,
+            data:updatedSection
         })
     } catch (error) {
+        console.log("error is -->",error);
         return res.status(500).json({
             message:"SubSection canot be created",
             success:false,
