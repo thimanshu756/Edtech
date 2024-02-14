@@ -28,13 +28,14 @@ const CourseInformationForm = () => {
 
     const dispatch = useDispatch();
     const { token } = useSelector((state) => state.auth)
-    console.log("token is -->",token);
+
     const { course, editCourse } = useSelector((state) => state.course)
     const [loading, setLoading] = useState(false)
     const [courseCategories, setCourseCategories] = useState([]);
 
     useEffect(() => {
         const getCategories = async () => {
+            console.log("course is -->",course);
             setLoading(true)
             const categories = await fetchCourseCategories()
             console.log("categories -->",categories);
@@ -61,14 +62,15 @@ const CourseInformationForm = () => {
 
     const isFormUpdated = () => {
         const currentValues = getValues()
-
+        console.log("category -->",currentValues.courseCategory);
+        console.log("categoryyy -->",course.category);
         if (
             currentValues.courseTitle !== course.courseName ||
             currentValues.courseShortDesc !== course.courseDescription ||
             currentValues.coursePrice !== course.price ||
             currentValues.courseTags.toString() !== course.tag.toString() ||
             currentValues.courseBenefits !== course.whatYouWillLearn ||
-            currentValues.courseCategory._id !== course.category._id ||
+            currentValues.courseCategory!== course.category._id ||
             currentValues.courseRequirements.toString() !==
             course.instructions.toString() ||
             currentValues.courseImage !== course.thumbnail
