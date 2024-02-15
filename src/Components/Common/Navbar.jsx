@@ -23,8 +23,8 @@ const Navbar = () => {
  const fetchSublinks = async()=>{
     try {
       const result = await apiconnector("GET",categories.CATEGORIES_API);
-      // console.log("subliks are -->", result);
-      setSubLinks(result.data.data)
+      console.log("subliks are -->", result.data.allCategories);
+      setSubLinks(result.data.allCategories)
     } catch (error) {
       console.log("could not fetch the category data");
     }
@@ -36,16 +36,16 @@ const Navbar = () => {
 
     },[])
 
-const subLinkss =[
-  {
-    title:"Python",
-    link:"/catalog/python"
-  },
-  {
-    title:"C PlusPlus",
-    link:"/catalog/Cpp"
-  }
-]
+// const subLinkss =[
+//   {
+//     title:"Python",
+//     link:"/catalog/python"
+//   },
+//   {
+//     title:"C PlusPlus",
+//     link:"/catalog/Cpp"
+//   }
+// ]
 
   const matchRoute = (route)=>{
     // console.log("local token -->", localStorage.getItem("token"));
@@ -80,10 +80,11 @@ const subLinkss =[
                   <div  className='  absolute top-[5%] translate-x-[-40%] flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900  lg:w-[300px] '>
                   
                {
-                subLinkss.length ? ( 
-                    subLinkss?.map((subLink , index)=>{
-                     return <Link to={`${subLink.link}`} key={index}>
-                      <p className='text-richblack-900'> {subLink.title}</p>
+                subLinks.length ? ( 
+                  subLinks?.map((subLink , index)=>{
+                    console.log("sublink is -->",subLink);
+                     return <Link to={`${subLink.name}`} key={index}>
+                      <p className='text-richblack-900'> {subLink.name}</p>
                       </Link>
                     })
   
