@@ -21,6 +21,7 @@ import AddCourse from "./Components/Core/Dashboard/AddCouse";
 import CoursesTable from "./Components/Core/Dashboard/InstructorCourses/CoursesTable";
 import MyCourses from "./Components/Core/Dashboard/MyCourses";
 import EditCourse from "./Components/Core/Dashboard/EditCourse";
+import Catalog from "../src/Pages/Catalog"
 function App() {
 
   const dispatch = useDispatch();
@@ -33,6 +34,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="catalog/:catalogName" element={<Catalog/>} />
+
         <Route path="/signup" element={
           <OpenRoute>
             <SignUp />
@@ -70,6 +73,7 @@ function App() {
           {
             user?.accountType === ACCOUNT_TYPE.STUDENT && (
               <Route path="/dashboard/enrolled-courses" element={<EnrolledCourses />} />
+
             )
           }
 

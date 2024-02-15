@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../Components/Common/Footer'
 import { useParams } from 'react-router-dom'
-import { apiConnector } from '../services/apiconnector';
+import { apiconnector } from '../services/apiconnector';
 import { categories } from '../services/apis';
 import { getCatalogaPageData } from '../services/operations/pageAndComponentData';
-import Course_Card from '../components/core/Catalog/Course_Card';
-import CourseSlider from '../components/core/Catalog/CourseSlider';
+
+import Course_Card from '../Components/Core/Catalog/Course_Card';
+import CourseSlider from '../Components/Core/Catalog/CourseSlider';
 import { useSelector } from "react-redux"
 import Error from "./Error"
 
@@ -20,7 +21,7 @@ const Catalog = () => {
     //Fetch all categories
     useEffect(()=> {
         const getCategories = async() => {
-            const res = await apiConnector("GET", categories.CATEGORIES_API);
+            const res = await apiconnector("GET", categories.CATEGORIES_API);
             const category_id = 
             res?.data?.data?.filter((ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName)[0]._id;
             setCategoryId(category_id);
