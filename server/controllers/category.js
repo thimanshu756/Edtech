@@ -1,6 +1,9 @@
- 
+
 const Category = require("../models/Category")
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max)
+  }
 // tag handler
 exports.createCategory=async(req,res)=>{
 
@@ -108,11 +111,11 @@ exports.categoryPageDetails = async (req, res) => {
         .populate({
           path: "courses",
           match: { status: "Published" },
-          populate: "ratingAndReviews",
+        //   populate: "ratingAndReview",
         })
         .exec()
   
-      //console.log("SELECTED COURSE", selectedCategory)
+      console.log("SELECTED COURSE", selectedCategory)
       // Handle the case when the category is not found
       if (!selectedCategory) {
         console.log("Category not found.")
@@ -121,6 +124,7 @@ exports.categoryPageDetails = async (req, res) => {
           .json({ success: false, message: "Category not found" })
       }
       // Handle the case when there are no courses
+      console.log("selectedCategory.courses.length -->",selectedCategory);
       if (selectedCategory.courses.length === 0) {
         console.log("No courses found for the selected category.")
         return res.status(404).json({
@@ -133,8 +137,9 @@ exports.categoryPageDetails = async (req, res) => {
       const categoriesExceptSelected = await Category.find({
         _id: { $ne: categoryId },
       })
+      console.log("categoriesExceptSelected -->",categoriesExceptSelected);
       let differentCategory = await Category.findOne(
-        categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
+        categoriesExceptSelected[ getRandomInt(categoriesExceptSelected.length) ]
           ._id
       )
         .populate({
@@ -167,6 +172,7 @@ exports.categoryPageDetails = async (req, res) => {
         },
       })
     } catch (error) {
+        console.log("error -->",error);
       return res.status(500).json({
         success: false,
         message: "Internal server error",

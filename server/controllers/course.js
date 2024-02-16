@@ -62,6 +62,16 @@ exports.createCourse = async (req, res) => {
 
     }, { new: true }
     )
+    const categoryDetails2 = await Category.findByIdAndUpdate(
+      { _id: category },
+      {
+        $push: {
+          courses: newCourse._id,
+        },
+      },
+      { new: true }
+    )
+    console.log("HEREEEEEEEE", categoryDetails2)
     console.log("new course is -->",newCourse);
     // update the Tag Schema :Todo
     return res.status(200).json({

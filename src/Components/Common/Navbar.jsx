@@ -83,7 +83,11 @@ const Navbar = () => {
                 subLinks.length ? ( 
                   subLinks?.map((subLink , index)=>{
                     console.log("sublink is -->",subLink);
-                     return <Link to={`${subLink.name}`} key={index}>
+                     return    <Link
+                     to={`/catalog/${subLink.name
+                       .split(" ")
+                       .join("-")
+                       .toLowerCase()}`}>
                       <p className='text-richblack-900'> {subLink.name}</p>
                       </Link>
                     })
