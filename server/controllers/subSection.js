@@ -7,12 +7,11 @@ exports.createSubSection= async(req,res)=>{
 
     try {
         // fetch all the data
-        const {sectionId,title,timeDuration,description}=req.body;
+        const {sectionId,title,description}=req.body;
 
         // extract file video
         const video = req.files.video;
         
-      
         // validate 
         if (!sectionId||!title||!description||!video) {
             return res.status(401).json({
@@ -27,7 +26,7 @@ exports.createSubSection= async(req,res)=>{
 
         const subSectionDetails= await SubSection.create({
             title:title,
-            // timeDuration:timeDuration,
+            timeDuration: `${uploadDetails.duration}`,
             description:description,
             videoUrl:uploadDetails.secure_url
         })

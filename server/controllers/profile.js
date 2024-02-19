@@ -186,6 +186,7 @@ exports.getEnrolledCourses = async (req, res) => {
       })
       .exec()
     userDetails = userDetails.toObject()
+    console.log("userDetails -->",userDetails.courses);
     var SubsectionLength = 0
     for (var i = 0; i < userDetails.courses.length; i++) {
       let totalDurationInSeconds = 0
@@ -194,17 +195,21 @@ exports.getEnrolledCourses = async (req, res) => {
         totalDurationInSeconds += userDetails.courses[i].courseContent[
           j
         ].subSection.reduce((acc, curr) => acc + parseInt(curr.timeDuration), 0)
+        console.log("total duration in seconds -->",totalDurationInSeconds);
         userDetails.courses[i].totalDuration = convertSecondsToDuration(
           totalDurationInSeconds
         )
+        console.log("total duration after conversion -->",convertSecondsToDuration(totalDurationInSeconds));
         SubsectionLength +=
           userDetails.courses[i].courseContent[j].subSection.length
       }
       let courseProgressCount = await CourseProgress.findOne({
-        courseID: userDetails.courses[i]._id,
+        courseId: userDetails.courses[i]._id,
         userId: userId,
       })
+      console.log("courseProgress count -->",courseProgressCount);
       courseProgressCount = courseProgressCount?.completedVideos.length
+      console.log("courseProgress count 2-->",courseProgressCount);
       if (SubsectionLength === 0) {
         userDetails.courses[i].progressPercentage = 100
       } else {
@@ -217,6 +222,7 @@ exports.getEnrolledCourses = async (req, res) => {
       }
     }
 
+    console.log("data -->",userDetails.courses);
     if (!userDetails) {
       return res.status(400).json({
         success: false,

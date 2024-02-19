@@ -7,6 +7,9 @@ const Courseprogress = require("../models/CourseProgress")
 const Section = require("../models/Section")
 const SubSection = require("../models/SubSection")
 const Category= require("../models/Category")
+const { convertSecondsToDuration } = require("../utils/secToDuration");
+const CourseProgress = require("../models/CourseProgress");
+
 exports.createCourse = async (req, res) => {
 
   try {
@@ -227,11 +230,72 @@ exports.getCourseDetails = async (req, res) => {
 
 // get full course details controllers
 
+// exports.getFullCourseDetails = async (req, res) => {
+//   try {
+//     const { courseId } = req.body;
+//     console.log("course Id -->",courseId);
+//     const userId = req.user.Id;
+//     const courseDetails = await Course.findOne({
+//       _id: courseId,
+//     })
+//       .populate({
+//         path: "instructor",
+//         populate: {
+//           path: "additionalDetails",
+//         }
+//       })
+//       .populate("category")
+//       .populate("ratingAndReview")
+//       .populate({
+//         path: "courseContent",
+//         populate: {
+//           path: "subSection"
+//         }
+//       }).exec();
+
+//     // find the course progress count 
+//     let courseProgressCount = await Courseprogress.findOne({
+//       CourseID: courseId,
+//       userId: userId
+//     })
+
+//     // validation 
+//     if (!courseDetails) {
+//       return res.status(401).json({
+//         message: "cannot find the course details",
+//         success: false
+//       })
+//     }
+
+//     const totalDurationInSeconds = 0;
+//     courseDetails.courseContent.forEach((content) => {
+//       content.subSection.forEach((subSection) => {
+//         const totalDurationInSeconds = parseInt(subSection.timeDuration)
+//       })
+//     })
+//     const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
+//     return res.status(200).json({
+//       success: true,
+//       data: {
+//         courseDetails,
+//         // totalDuration,
+//         completedVideos: courseProgressCount?.completedVideos
+//         ? courseProgressCount?.completedVideos
+//         : [],
+//       }
+//     })
+//   } catch (error) {
+//     console.log(error);
+//     return res.json({
+//       message: "getting error in fetching the fulldetails of course",
+//       success: false,
+//     })
+//   }
+// }
 exports.getFullCourseDetails = async (req, res) => {
   try {
-    const { courseId } = req.body;
-    console.log("course Id -->",courseId);
-    const userId = req.user.Id;
+    const { courseId } = req.body
+    const userId = req.user.id
     const courseDetails = await Course.findOne({
       _id: courseId,
     })
@@ -239,53 +303,63 @@ exports.getFullCourseDetails = async (req, res) => {
         path: "instructor",
         populate: {
           path: "additionalDetails",
-        }
+        },
       })
       .populate("category")
-      // .populate("ratingAndReview")
+      .populate("ratingAndReviews")
       .populate({
         path: "courseContent",
         populate: {
-          path: "subSection"
-        }
-      }).exec();
+          path: "subSection",
+        },
+      })
+      .exec()
 
-    // find the course progress count 
-    let courseProgressCount = await Courseprogress.findOne({
-      CourseID: courseId,
-      userId: userId
+    let courseProgressCount = await CourseProgress.findOne({
+      courseID: courseId,
+      userId: userId,
     })
 
-    // validation 
+    console.log("courseProgressCount : ", courseProgressCount)
+
     if (!courseDetails) {
-      return res.status(401).json({
-        message: "cannot find the course details",
-        success: false
+      return res.status(400).json({
+        success: false,
+        message: `Could not find course with id: ${courseId}`,
       })
     }
 
-    // const totalDurationInSeconds = 0;
-    // courseDetails.courseContent.forEach((content) => {
-    //   content.subSection.forEach((subSection) => {
-    //     const timeDurationInSeconds = parseInt(subSection.timeDuration)
-    //   })
-    // })
-    // const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
+    // if (courseDetails.status === "Draft") {
+    //   return res.status(403).json({
+    //     success: false,
+    //     message: `Accessing a draft course is forbidden`,
+    //   });
+    // }
+
+    let totalDurationInSeconds = 0
+    courseDetails.courseContent.forEach((content) => {
+      content.subSection.forEach((subSection) => {
+        const timeDurationInSeconds = parseInt(subSection.timeDuration)
+        totalDurationInSeconds += timeDurationInSeconds
+      })
+    })
+
+    const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
+
     return res.status(200).json({
       success: true,
       data: {
         courseDetails,
-        // totalDuration,
+        totalDuration,
         completedVideos: courseProgressCount?.completedVideos
-        ? courseProgressCount?.completedVideos
-        : [],
-      }
+          ? courseProgressCount?.completedVideos
+          : [],
+      },
     })
   } catch (error) {
-    console.log(error);
-    return res.json({
-      message: "getting error in fetching the fulldetails of course",
+    return res.status(500).json({
       success: false,
+      message: error.message,
     })
   }
 }
