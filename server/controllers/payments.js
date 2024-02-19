@@ -8,7 +8,6 @@
 //     // get courseId
 //     const {course_ID}= req.body;
 //     const UserID= req.User.id;
-
 //     //validation
 //     if (!course_ID) {
 //         return res.status(401).json({
@@ -28,15 +27,12 @@
 //         }
 //         // user already paid ?
 //         const uid = new mongoose.Types.ObjectId(UserID);
-//         if (course.studentsEnrolled.includes(uid)) {
-           
+//         if (course.studentsEnrolled.includes(uid)) {         
 //                 return res.status(200).json({
 //                     success:false,
 //                     message:"Student is already enrolled"
-//                 })
-            
+//                 })       
 //         }
-
 //     } catch (error) {
 //         console.error(error);
 //             return res.status(500).json({
@@ -47,7 +43,6 @@
 //     // create a order
 //     const amount = course.price;
 //     const currency= "INR";
-
 //     const options={
 //         amount: amount*100,
 //         currency,
@@ -57,7 +52,6 @@
 //             UserID
 //         }
 //     }
-
 //     try {
 //         // initiate the payment using razorpay
 //         const paymentResponse = await instance.orders.create(options);
@@ -81,7 +75,6 @@
 //         })
 //     }
 // }
-
 // // verify signature of razorpay and server
 
 // exports.verifyPayment= async(req,res)=>{
@@ -146,9 +139,7 @@
 //         })
 //     }
 // }
-
 // exports.sendPaymentSuccessEmail=async(req,res)=>{
-    
 // }
 
 const { instance } = require("../config/razorpay")
@@ -332,7 +323,6 @@ const enrollStudents = async (courses, userId, res) => {
         },
         { new: true }
       )
-
       console.log("Enrolled student: ", enrolledStudent)
       // Send an email notification to the enrolled student
       const emailResponse = await mailSender(
