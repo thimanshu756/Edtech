@@ -70,23 +70,23 @@ const SignUpForm = ({userType,setAccountType,accountType}) =>{
   <div className='flex gap-10 mb-4'>
   <div>
   <p className='-mb-2 ml-2'>First Name<sup className='text-pink-200 '>*</sup> </p> <br />
-  <input type="text" id='firstName' name='firstName' value={firstName} onChange={handleOnChange} placeholder='Enter First Name' className='bg-richblack-800 rounded-lg p-[12px] w-[200px]'/> 
+  <input type="text" id='firstName' name='firstName' value={firstName} onChange={handleOnChange} placeholder='Enter First Name' className='bg-richblack-800 rounded-lg p-[12px] w-[100px]'/> 
   </div>
   <div>
     <p className='-mb-2 ml-2'>Last Name <sup className='text-pink-200 '>*</sup> </p> <br />
-    <input type="text" id='lastName' name='lastName' value={lastName} onChange={handleOnChange} placeholder='Enter Last Name' className='bg-richblack-800 rounded-lg p-[12px] w-[200px]'/>
+    <input type="text" id='lastName' name='lastName' value={lastName} onChange={handleOnChange} placeholder='Enter Last Name' className='bg-richblack-800 rounded-lg p-[12px] w-[100px]'/>
   </div>
   </div>
   {/* email form */}
   <div className='mb-4'>
   <p className='-mb-1 ml-2'>Email Address<sup className='text-pink-200 '>*</sup> </p> <br />
-  <input type="text" id='email' name='email' value={email}  onChange={handleOnChange} placeholder='Enter Email adress' className='bg-richblack-800 rounded-lg p-[12px] w-[440px]'/> 
+  <input type="text" id='email' name='email' value={email}  onChange={handleOnChange} placeholder='Enter Email adress' className='bg-richblack-800 rounded-lg p-[12px] w-[250px] md:w-[440px]'/> 
   </div>
   {/* password */}
-  <div className='flex gap-10 mb-4'>
+  <div className='flex flex-col gap-10 mb-4'>
   <div>
   <p className='-mb-2 ml-2'>Create Password<sup className='text-pink-200 '>*</sup> </p> <br />
-  <div className='bg-richblack-800 rounded-lg p-[12px] w-[200px] flex  items-center'>
+  <div className='bg-richblack-800 rounded-lg p-[12px] w-[250px] md:w-[200px] flex  items-center'>
   <input type={`${showPassword ? "text" :"password"}`} id=''  onChange={handleOnChange} name='password' value={password} placeholder='Enter Password'className='bg-richblack-800 ' />  
   {
       showPassword ? ( <div><FaRegEye className='text-richblack-100' onClick={()=>setShowPassword(false)}/></div> ):( <div  onClick={()=>setShowPassword(true)}><FaRegEyeSlash className='text-richblack-100'/> </div> )
@@ -95,7 +95,7 @@ const SignUpForm = ({userType,setAccountType,accountType}) =>{
   </div>
   <div>
   <p className='-mb-2 ml-2'>Confirm Password<sup className='text-pink-200 '>*</sup> </p> <br />
-  <div className='bg-richblack-800 rounded-lg p-[12px] w-[200px] flex  items-center'>
+  <div className='bg-richblack-800 rounded-lg p-[12px] w-[250px] md:w-[200px] flex  items-center'>
   <input type={`${showPassword ? "text" :"password"}`} id=''  onChange={handleOnChange} name='confirmPassword' value={confirmPassword} placeholder='Confirm Password'className='bg-richblack-800 ' />  
   {
       showPassword ? ( <div><FaRegEye className='text-richblack-100' onClick={()=>setShowPassword(false)}/></div> ):( <div  onClick={()=>setShowPassword(true)}><FaRegEyeSlash className='text-richblack-100'/> </div> )

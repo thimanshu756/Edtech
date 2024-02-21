@@ -6,11 +6,10 @@ import {RiEditBoxLine} from 'react-icons/ri'
 const MyProfile = () => {
   const navigate=useNavigate()
   const {user}= useSelector((state)=>state.profile)
-  console.log("User is +>",user.additionalDetails);
   return (
-    <div className='flex flex-col text-richblack-50 items-center'> 
+    <div className='flex  flex-col text-richblack-50 items-center'> 
     <h1 className='text-4xl mt-10'>My Profile</h1>
-    <div className='flex mt-20 items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 lg:w-[900px]'>
+    <div className='flex flex-col gap-4 md:flex-row mt-20 items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 md:w-[650px] lg:w-[900px]'>
       <div className='flex gap-5 items-center'>
       <img src={user.image} alt="" className='w-[60px] rounded-full'/>
     <div className='flex flex-col'>
@@ -27,8 +26,8 @@ const MyProfile = () => {
           <RiEditBoxLine />
     </IconBtn>
     </div>
-    <div className='flex mt-20 gap-10 flex-col rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 lg:w-[900px]'>
-        <div className='flex justify-between w-[100%] items-center'>
+    <div className='flex  mt-20 gap-10 flex-col rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 md:w-[650px] lg:w-[900px]'>
+        <div className='flex  w-auto justify-evenly sm:justify-between md:w-[100%] items-center'>
           <h1 className='text-richblack-5 text-xl'>Personal Details</h1>
           <IconBtn
           text="Edit"
@@ -39,7 +38,7 @@ const MyProfile = () => {
           <RiEditBoxLine />
          </IconBtn>
         </div>
-        <div className='flex justify-between w-[60%]'>
+        <div className='flex sm:justify-between justify-evenly w-[90%]   lg:w-[60%]'>
           <div>
             <p className='text-richblack-300'>First Name</p>
             <p className='text-richblack-5 text-lg'>{user.firstName}</p> 
@@ -49,10 +48,10 @@ const MyProfile = () => {
           <p className='text-richblack-5 text-lg'>{user.lastName}</p> 
          </div>
         </div>
-        <div className='flex justify-between w-[71%]'>
+        <div className='flex lg:flex-row flex-col gap-10  justify-between lg:w-[60%]   '>
           <div>
             <p className='text-richblack-300'>Email</p>
-            <p className='text-richblack-5 text-lg'>{user.email}</p> 
+            <p className='text-richblack-5 w-fit text-lg'>{user.email}</p> 
           </div>
          <div>
          <p className='text-richblack-300'>Phone Number</p>
@@ -60,8 +59,8 @@ const MyProfile = () => {
          </div>
         </div>
     </div>
-    <div className='flex mt-20 mb-10 gap-10 flex-col rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 lg:w-[900px]'>
-        <div className='flex justify-between w-[100%] items-center'>
+    <div className='flex  mt-20 gap-10 flex-col rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-3 px-5 sm:p-8 sm:px-12 md:w-[650px] lg:w-[900px]'>
+        <div className='flex  gap-6 w-auto justify-evenly sm:justify-between md:w-[100%] items-center'>
           <h1 className='text-richblack-5 text-xl'>Additional Details</h1>
           <IconBtn
           text="Edit"
@@ -78,7 +77,7 @@ const MyProfile = () => {
             <p className='text-richblack-5 text-lg'>{user.additionalDetails.about ==null ? ("Change The Bio"):(`${user.additionalDetails.about}`)}</p> 
           </div>
         </div>
-        <div className='flex justify-between w-[71%]'>
+        <div className='flex flex-col sm:flex-row justify-between w-[71%]'>
           <div>
             <p className='text-richblack-300'>Date Of Birth</p>
             <p className='text-richblack-5 text-lg'>{user.additionalDetails.dateOfBirth ==null ? ("Enter Your DOB"):(`${user.additionalDetails.dateOfBirth}`)}</p> 

@@ -12,7 +12,7 @@ const BecomeInstructorsection = () => {
         <img src={instructorImg} alt="InstructorImg"   className="shadow-white shadow-[-20px_-20px_0_0]"/>
         </div>
     <div className='md:w-[50%] flex gap-10 flex-col '>
-    <h1 className="lg:w-[50%] text-4xl text-richblack-50 font-semibold ">
+    <h1 className="lg:w-[50%] overflow-hidden text-4xl text-richblack-50 font-semibold ">
               Become an
               <TextColor text={" instructor"} />
             </h1>        

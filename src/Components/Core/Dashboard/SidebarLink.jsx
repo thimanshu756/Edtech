@@ -13,7 +13,7 @@ const SidebarLink = ({data,icon}) => {
   }
   return (
     <NavLink to={data.path}
-    className={`relative px-8 py-2 text-sm font-medium ${
+    className={`relative md:px-8 px-3  py-2 text-sm font-medium ${
       routeMatch(data.path) ? " bg-yellow-400 text-yellow-50":"bg-opacity-0 text-richblack-300" 
     } transition-all duration-200`}
      >
@@ -22,7 +22,7 @@ const SidebarLink = ({data,icon}) => {
           routeMatch(data.path) ? "opacity-100" : "opacity-0"
         }`}
       ></span>
-        <div className=' bg-opacity-0 flex items-center gap-x-2'>
+      <div className=' bg-opacity-0 flex flex-col md:flex-row items-center gap-x-2'>
       <Icon className="text-lg" />
       <span>{data.name}</span>
         </div>

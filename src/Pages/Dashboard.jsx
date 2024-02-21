@@ -9,15 +9,15 @@ const Dashboard = () => {
 
     if(authLoading || profileLoading){
       return (
-          <div>Loading.....</div>
+          <div className='spinner'></div>
       )
   }
   return (
-    <div className='flex '>
-        <div className='lg:w-[20%] h-[calc(100vh-3.5rem)]  bg-richblack-800'>
+    <div className='flex flex-col md:flex-row'>
+        <div className=' w-[100%] md:block md:w-[20%] md:h-[calc(100vh-3.5rem)]  bg-richblack-800'>
             <Sidebar/>
         </div>
-        <div className='lg:w-[70%] h-[calc(100vh-3.5rem)] '>
+        <div className='md:w-[80%]  h-[calc(100vh-3.5rem)] '>
             <Outlet/>
         </div>
     </div>

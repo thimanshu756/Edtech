@@ -65,7 +65,7 @@ const Navbar = () => {
                   {
                     link.title == "Catalog" ? (
                       <div className='  flex items-center gap-1 group hover:cursor-pointer'>
-                        <p>{link.title}</p>
+                        <p className='  text-richblack-800 md:text-richblack-25'>{link.title}</p>
                         <IoIosArrowDown />
                         <div className=' opacity-0 invisible group-hover:visible group-hover:opacity-100  transition-all duration-200'>
                         <div className='absolute  top-4 translate-x-[95%] translate-y-[80%] h-6 w-6 rotate-45 rounded bg-richblack-5 md:left-[45.2%] md:top-4 md:translate-x-[95%] md:translate-y-[80%]'></div>
@@ -89,7 +89,7 @@ const Navbar = () => {
                       </div>) : (
                       <div>
                         <Link to={link.path}>
-                          <p className={`${matchRoute(link.path) ? " text-yellow-25" : " text-richblack-25"}`}> {link.title} </p>
+                          <p className={`${matchRoute(link.path) ? " text-yellow-25" : " text-richblack-800 md:text-richblack-25"}`}> {link.title} </p>
                         </Link>
                   
                       </div>
@@ -104,10 +104,10 @@ const Navbar = () => {
                 token == null &&(
                   <div className=' md:hidden'>
                   <Link to="/signup">
-                  <p className={``}>Signup </p>
+                  <p className={` text-richblack-800`}>Signup </p>
                   </Link>
                   <Link to="/login">
-                  <p className={``}>Login </p>
+                  <p className={`text-richblack-800`}>Login </p>
                   </Link>
                   </div>
                 )
@@ -115,7 +115,7 @@ const Navbar = () => {
             
             </li>
             <li>
-            {token !== null && <div className=' md:hidden'>
+            {token !== null && <div className=' md:hidden text-richblack-800 md:text-richblack-25'>
               <Link to="/dashboard/my-profile">
               Dashboard
               </Link>

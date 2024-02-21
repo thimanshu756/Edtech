@@ -6,6 +6,7 @@ const Profile = require("../models/Profile");
 const jwt = require("jsonwebtoken")
 const dotenv = require("dotenv");
 const mailSender = require("../utils/mailSender");
+const {passwordUpdated} = require("../Templates/passwordUpdate")
 dotenv.config();
 
 
@@ -16,7 +17,6 @@ exports.SendOtp =async(req,res)=>{
         const {email} = req.body;
         // check if user already exist or not
         const userexists = await User.findOne({email});
-        console.log("User Exists in otp function-->",userexists);
         if (userexists) {
             return res.status(400).json({
                 success:false,
@@ -45,7 +45,6 @@ exports.SendOtp =async(req,res)=>{
         const otpPayload ={email , otp}
         const otpBody= await OTP.create(otpPayload)
 
-        console.log("Otp Body in Send OTP func is :",otpBody);
         return res.status(200).json({
             success:true,
             message:'Otp generated sucessfully',
@@ -67,7 +66,6 @@ exports.signUp=async(req,res)=>{
 
     try {
             // fetch the data from req body
-
     const {
         firstName,
         lastName,
@@ -78,13 +76,7 @@ exports.signUp=async(req,res)=>{
         contactNumber,
         otp
     }= req.body;
-    // validate the data
-    // if(!firstName || !lastName||!email||!password||!confirmPassword||!accountType||!otp){
-    //     return res.status(400).json({
-    //         success:false,
-    //         message:"please enter all the fields properly"
-    //     })
-    // }
+
     if (!firstName) {
         return res.status(400).json({
             success:false,
@@ -135,12 +127,10 @@ exports.signUp=async(req,res)=>{
         })
     }
 
-    console.log("email is :-->",email,otp);
     // check user already exists or not
 
     const userExists = await User.findOne({email});
         if (userExists) {
-        console.log("userExists--->",userExists);
         return res.status(400).json({
             success:false,
             message:"User already exists "
@@ -150,8 +140,6 @@ exports.signUp=async(req,res)=>{
 
     const recentOtp = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1)
     // validate otp
-    console.log("recent otp from db -->",recentOtp[0].otp);
-    console.log(" otp from user -->",otp);
 
     if(recentOtp.length==0){
         return res.status(400).json({
@@ -184,7 +172,6 @@ exports.signUp=async(req,res)=>{
         additionalDetails:profileDetails._id,
         image:`https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`
     });
-    console.log("User that is saved in DB is :" , user);
     return res.status(200).json({
         success:true,
         message:"User registerd sucessfully",
@@ -336,26 +323,26 @@ exports.changePassword = async (req, res) => {
         { new: true }
       )
   
-    //   // Send notification email
-    //   try {
-    //     const emailResponse = await mailSender(
-    //       updatedUserDetails.email,
-    //       "Password for your account has been updated",
-    //       passwordUpdated(
-    //         updatedUserDetails.email,
-    //         `Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
-    //       )
-    //     )
-    //     console.log("Email sent successfully:", emailResponse.response)
-    //   } catch (error) {
-    //     // If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
-    //     console.error("Error occurred while sending email:", error)
-    //     return res.status(500).json({
-    //       success: false,
-    //       message: "Error occurred while sending email",
-    //       error: error.message,
-    //     })
-    //   }
+      // Send notification email
+      try {
+        const emailResponse = await mailSender(
+          updatedUserDetails.email,
+          "Password for your account has been updated",
+          passwordUpdated(
+            updatedUserDetails.email,
+            `Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
+          )
+        )
+        console.log("Email sent successfully:", emailResponse.response)
+      } catch (error) {
+        // If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
+        console.error("Error occurred while sending email:", error)
+        return res.status(500).json({
+          success: false,
+          message: "Error occurred while sending email",
+          error: error.message,
+        })
+      }
   
       // Return success response
       return res

@@ -28,13 +28,13 @@ const ExploreMore = () => {
   return (
     <div className=" relative max-h-max z-20">
       {/* Explore more section */}
-      <div className="">
-        <div className=" text-4xl font-semibold text-center my-10">
-          <div className=" w-[380px] p-10 text-center">
+      <div className=" relative">
+        <div className=" text-4xl font-semibold text-center w-auto mx-auto my-10">
+          <div className=" w-[380px] md:w-fit p-10 text-center">
            Unlock the 
           <HighlightText text={" Power of Code"} />
           </div>
-          <p className="text-center text-richblack-300 w-[300px] pl-8 text-lg font-semibold mt-1">
+          <p className="text-center text-richblack-300 w-[300px] md:w-fit pl-8   text-lg font-semibold mt-1">
             Learn to Build Anything You Can Imagine
           </p>
         </div>

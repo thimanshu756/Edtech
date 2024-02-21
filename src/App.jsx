@@ -24,6 +24,11 @@ import EditCourse from "./Components/Core/Dashboard/EditCourse";
 import Catalog from "../src/Pages/Catalog"
 import CourseDetails from "./Pages/CourseDetails";
 import Cart from "./Components/Core/Dashboard/Cart";
+import ViewCourse from "./Pages/ViewCourse";
+import VideoDetails from "./Components/Core/viewCourse/VideoDetails";
+import Instructor from "./Components/Core/Dashboard/InstructorDashboard/InstructorDashboard";
+import Contact from "./Pages/ContactUs";
+
 function App() {
 
   const dispatch = useDispatch();
@@ -35,9 +40,28 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="catalog/:catalogName" element={<Catalog/>} />
         <Route path="courses/:courseId" element={<CourseDetails/>} />
+        <Route element={
+        <PrivateRoute>
+          <ViewCourse />
+        </PrivateRoute>
+      }>
+
+      {
+        user?.accountType === ACCOUNT_TYPE.STUDENT && (
+          <>
+          <Route 
+            path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+            element={<VideoDetails />}
+          />
+          </>
+        )
+      }
+
+      </Route>
 
         <Route path="/signup" element={
           <OpenRoute>
@@ -90,13 +114,14 @@ function App() {
               <Route path="/dashboard/add-course" element={<AddCourse />} />
               <Route path="/dashboard/my-courses" element={<MyCourses />} />    
               <Route path="/dashboard/edit-course/:courseId" element={<EditCourse />} />  
+              <Route path="/dashboard/instructor" element={<Instructor />} />
+
               </>
        
             )
           }
         </Route>
       </Routes>
-      <Footer />
     </div>
   );
 }

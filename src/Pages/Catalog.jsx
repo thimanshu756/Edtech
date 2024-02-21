@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { apiconnector } from '../services/apiconnector';
 import { categories } from '../services/apis';
 import { getCatalogaPageData } from '../services/operations/pageAndComponentData';
-
 import Course_Card from '../Components/Core/Catalog/Course_Card';
 import CourseSlider from '../Components/Core/Catalog/CourseSlider';
 import { useSelector } from "react-redux"
@@ -80,7 +79,7 @@ const Catalog = () => {
           </div>
     
           {/* Section 1 */}
-          <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+          <div className=" mx-auto box-content w-full max-w-maxContentTab pr-2 pl-2  py-12 lg:max-w-maxContent">
             <div className="section_heading">Courses to get you started</div>
             <div className="my-4 flex border-b border-b-richblack-600 text-sm">
               <p
@@ -136,7 +135,7 @@ const Catalog = () => {
             </div>
           </div>
     
-          <Footer />
+          <Footer/>
         </>
       )
     }

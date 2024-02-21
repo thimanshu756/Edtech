@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 
 import ConfirmationModal from "../Components/Common/ConfirmationModal"
-import Footer from "../Components/Common/Footer"
 import RatingStars from "../Components/Common/RatingStars"
 import CourseAccordionBar from "../Components/Core/Course/CourseAccordionBar"
 import CourseDetailsCard from "../Components/Core/Course/CourseDetailsCard"
@@ -13,6 +12,9 @@ import { formatDate } from "../services/formatDate"
 import { fetchCourseDetails } from "../services/operations/courseDetailsAPI"
 import { buyCourse } from "../services/operations/studentFeaturesAPI"
 import GetAvgRating from "../utils/avgRating"
+import { ACCOUNT_TYPE } from "../utils/constants"
+import { addToCart } from "../Slices/cartSlice"
+import { toast } from "react-hot-toast"
 import Error from "./Error"
 
 function CourseDetails() {
@@ -43,7 +45,7 @@ function CourseDetails() {
     })()
   }, [courseId])
 
-  // console.log("response: ", response)
+ 
 
   // Calculating Avg Review count
   const [avgReviewCount, setAvgReviewCount] = useState(0)
@@ -86,6 +88,25 @@ function CourseDetails() {
     return <Error />
   }
 
+  const handleAddToCart = () => {
+    if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+      toast.error("You are an Instructor. You can't buy a course.")
+      return
+    }
+    if (token) {
+      dispatch(addToCart(response?.data?.courseDetails))
+      return
+    }
+    setConfirmationModal({
+      text1: "You are not logged in!",
+      text2: "Please login to add To Cart",
+      btn1Text: "Login",
+      btn2Text: "Cancel",
+      btn1Handler: () => navigate("/login"),
+      btn2Handler: () => setConfirmationModal(null),
+    })
+  }
+
   const {
     _id: course_id,
     courseName,
@@ -94,7 +115,7 @@ function CourseDetails() {
     price,
     whatYouWillLearn,
     courseContent,
-    ratingAndReview,
+    ratingAndReviews,
     instructor,
     studentsEnrolled,
     createdAt,
@@ -151,7 +172,7 @@ function CourseDetails() {
               <div className="text-md flex flex-wrap items-center gap-2">
                 <span className="text-yellow-25">{avgReviewCount}</span>
                 <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
-                <span>{`(${ratingAndReview.length} reviews)`}</span>
+                <span>{`(${ratingAndReviews.length} reviews)`}</span>
                 <span>{`${studentsEnrolled.length} students enrolled`}</span>
               </div>
               <div>
@@ -183,11 +204,23 @@ function CourseDetails() {
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
                 Rs. {price}
               </p>
-              <button className="yellowButton" onClick={handleBuyCourse}>
-                Buy Now
+              <button
+              className="yellowButton"
+              onClick={
+                user && response?.data?.courseDetails?.studentsEnrolled.includes(user?._id)
+                  ? () => navigate("/dashboard/enrolled-courses")
+                  : handleBuyCourse
+              }
+            >
+              {user && response?.data?.courseDetails?.studentsEnrolled.includes(user?._id)
+                ? "Go To Course"
+                : "Buy Now"}
+            </button>
+            {(!user || ! response?.data?.courseDetails?.studentsEnrolled.includes(user?._id)) && (
+              <button onClick={handleAddToCart} className="blackButton">
+                Add to Cart
               </button>
-              <button className="blackButton">Add to Cart</button>
-            </div>
+            )}            </div>
           </div>
           {/* Courses Card */}
           <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute lg:block">

@@ -92,7 +92,7 @@ const { default: mongoose } = require("mongoose");
         }
         //check if user already reviewed the course
         const alreadyReviewed = await RatingAndReview.findOne({
-                                                user:userId,
+                                              user:userId,
                                                 course:courseId,
                                             });
         if(alreadyReviewed) {
@@ -177,14 +177,13 @@ const { default: mongoose } = require("mongoose");
     try {
         const allReviews = await RatingAndReview.find({}).sort({rating:"desc"})
         .populate({
-            path:"User",
-            select:"firstName lastname email image"
+            path:"user",
+            select:"firstName lastName email image",
         })
         .populate({
-            path:"User",
+            path:"course",
             select:"courseName"
         }).exec();
-
         return res.status(200).json({
             success:true,
             message:"sucessfully fetched all Reviews",

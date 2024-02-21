@@ -37,14 +37,14 @@ const LoginForm = () => {
                 {/* email form */}
                 <div className=''>
                     <p className='-mb-1 ml-2'>Email Address<sup className='text-pink-200 '>*</sup> </p> <br />
-                    <input type="text" id='firstName' name='email' value={email} onChange={handleOnChange} placeholder='Enter Email adress' className='bg-richblack-800 rounded-lg p-[12px] w-[440px]' />
+                    <input type="text" id='firstName' name='email' value={email} onChange={handleOnChange} placeholder='Enter Email adress' className='bg-richblack-800 rounded-lg p-[12px] md:w-[440px]' />
                 </div>
                 {/* password */}
 
                 <div>
                     <p className=''> Password<sup className='text-pink-200 '>*</sup> </p> <br />
-                    <div className='bg-richblack-800 rounded-lg p-[12px] w-[440px ] flex  items-center'>
-                        <input type={`${showPassword ? "text" : "password"}`} id='' onChange={handleOnChange} name='password' value={password} placeholder='Enter Password' className='bg-richblack-800 w-[100%] ' />
+                    <div className='bg-richblack-800 rounded-lg p-[12px] w-[200px] md:w-[440px] flex  items-center'>
+                        <input type={`${showPassword ? "text" : "password"}`} id='' onChange={handleOnChange} name='password' value={password} placeholder='Enter Password' className='bg-richblack-800 md:w-[100%] ' />
                         {
                             showPassword ? (<div><FaRegEye className='text-richblack-100' onClick={() => setShowPassword(false)} /></div>) : (<div onClick={() => setShowPassword(true)}><FaRegEyeSlash className='text-richblack-100' /> </div>)
                         }

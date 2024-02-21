@@ -17,7 +17,7 @@ const statsData=[{
 }]
 const Stats = () => {
   return (
-    <div className='w-full mx-auto bg-richblack-800 flex flex-row gap-10 py-[90px] px-[120px] items-center justify-evenly '>
+    <div className='w-full mx-auto bg-richblack-800 flex sm:flex-row flex-col gap-10 py-[90px] px-[120px] items-center justify-evenly '>
         {statsData.map((data)=>(
             <div className='flex flex-col items-center' > 
                 <h1 className='text-richblack-5 text-2xl font-bold'>{data.amount}</h1>

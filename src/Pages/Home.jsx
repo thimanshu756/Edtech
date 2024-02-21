@@ -8,8 +8,8 @@ import bannerVideo from "../assets/Images/banner.mp4"
 import CodeBlocks from '../Components/Core/HomePage/CodeBlocks';
 import TimelineSection from '../Components/Core/HomePage/TimelineSection';
 import BecomeInstructorsection from '../Components/Core/HomePage/BecomeInstructorsection';
-import Footer from '../Components/Common/Footer';
 import ExploreMore from '../Components/Core/HomePage/ExploreMore';
+import Footer from "../Components/Common/Footer"
 const Home = () => {
     
   return (
@@ -25,7 +25,7 @@ const Home = () => {
             </div>
             </Link>
 
-            <div className='text-center text-4xl font-semibold mt-7 h-12'>
+            <div className='text-center text-4xl font-semibold mt-7 overflow-hidden md:h-12'>
               Empower Your Future with <TextColor text= {"Coding Skills"}/>
             </div>             
             
@@ -41,22 +41,16 @@ const Home = () => {
                 <Button active={false} linkto={"/"}>
                 Book a Demo 
                 </Button>
-            </div>
-            <div className=' h-[515px]  mt-11 relative  shadow-[15px_15px_20px_0px_#F5F5F5] '>
-                
+            </div>                
                 <video src={bannerVideo}
                 muted 
                 loop
                 autoPlay
-                className='h-[515px]  z-50  top-0' >
+                className='max-h-[515px]  z-50  top-0 shadow-[15px_15px_20px_0px_#F5F5F5] mt-10' >
                 </video>
-        
-             
-            </div>
-
-            <div className='w-[11/12] relative left-16'>
+            <div className=''>
             <CodeBlocks 
-            position={"flex-row"}
+            position={"flex-col md:flex-row"}
             heading={
                 <div>
                     Unlock your 
@@ -73,9 +67,9 @@ const Home = () => {
             />
             </div>
 
-            <div className='w-[90%] relative left-16'>
+            <div className=''>
             <CodeBlocks 
-            position={"flex-row-reverse"}
+            position={"flex-col md:flex-row-reverse"}
             heading={
                 <div>
                     Start
@@ -92,15 +86,14 @@ const Home = () => {
             />
             </div>
             {/* Extra div */}
-            <div className='h-[100px] '></div>
-   
+            <div className='h-[100px]'></div>
               <ExploreMore />
 
         </div>
         {/* section 2 */}
         <div className=' bg-greys-5 text-richblack-700 z-0'>
         <div className=' h-[200px]'   id='cross-section' >
-        <div className='flex flex-row justify-center gap-9 mt-[80px]'>
+        <div className='flex flex-row justify-center gap-[2px] sm:gap-9 mt-[80px]'>
           <Button active={true} linkto={"/signup"}>
             <div className='flex flex-row gap-3 items-center'>
             Explore Full Catalog 
@@ -126,7 +119,7 @@ const Home = () => {
             <div>
             <BecomeInstructorsection/>
             </div>
-         
+         <Footer/>
     </div>
   )
 }

@@ -19,7 +19,7 @@ const LearningGrid = () => {
               >
                 {card.order < 0 ? (
                   <div className="lg:w-[90%] flex flex-col gap-3 pb-10 lg:pb-0">
-                    <div className="text-4xl h-[90px] font-semibold ">
+                    <div className="text-4xl overflow-hidden font-semibold ">
                       {card.heading}
                       <TextColor text={card.highlightText} />
                     </div>

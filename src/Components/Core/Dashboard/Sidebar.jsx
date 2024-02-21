@@ -21,8 +21,8 @@ const Sidebar = () => {
     }
 
   return (
-    <div className='flex h-[calc(100vh-3.5rem)] min-w-[220px] mx-[10px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10'>
-        <div className=' flex flex-col '>
+    <div className='flex md:h-[calc(100vh-3.5rem)] min-w-[220px] mx-[10px] flex-col md:flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10'>
+        <div className=' flex md:flex-col min-w-[200px]  md:gap-0 flex-row w-[100%] md:w-auto '>
             {
                 sidebarLinks.map((link)=>{
                   if(link.type && user?.accountType != link.type) return null
@@ -32,12 +32,11 @@ const Sidebar = () => {
                 })
             }
             </div>
-            <div className=' border mx-5 border-b-1 mt-20 border-richblack-300'>
+            <div className=' hidden md:block border mx-5 border-b-1 md:mt-20 border-richblack-300'>
             </div>
-            <div className='flex flex-col mt-8'>
+            <div className='flex md:flex-col flex-row md:mt-8'>
               <SidebarLink data={{ name: "Settings", path: "/dashboard/settings" }}
               icon="VscSettingsGear"/>
-
               <button  
               onClick={()=>{
                 setConfimationModal({
