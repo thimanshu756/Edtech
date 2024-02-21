@@ -1,135 +1,182 @@
-import React from 'react'
-import lightLogo from '../../assets/Logo/Logo-Full-Light.png'
-import { Link } from 'react-router-dom'
-import { FaFacebook } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import React from "react";
+import { FooterLink2 } from "../../data/footer-links";
+import { Link } from "react-router-dom";
+
+// Images
+import Logo from "../../assets/Logo/Logo-Full-Light.png";
+
+// Icons
+import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
+
+const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
+const Resources = [
+  "Articles",
+  "Blog",
+  "Chart Sheet",
+  "Code challenges",
+  "Docs",
+  "Projects",
+  "Videos",
+  "Workspaces",
+];
+const Plans = ["Paid memberships", "For students", "Business solutions"];
+const Community = ["Forums", "Chapters", "Events"];
+
 const Footer = () => {
   return (
-    <div className='w-[11/12] bg-richblack-800 py-[52px] px-[120px]'> 
-    <div className='flex flex-row gap-16 mb-5'>
-        {/* 1st section */}
-    <div className='flex flex-col gap-4'>
-            <img src={lightLogo} alt="" />
-            <div className='text-xl text-richblack-100'>Company</div>
-            <div className='text-richblack-400'> <Link  to={"/"}> About </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Careers </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Affiliates </Link> </div>
-            {/* icons */}
-            <div className='flex flex-row gap-4 text-richblack-400 '>
-          <Link to={"/"}> <FaFacebook className='w-[24px] h-[24px]'/> </Link>
-            <Link to={"/"}> <FaGoogle className='w-[24px] h-[24px]'/> </Link>
-            <Link to={"/"}> <FaXTwitter className='w-[24px] h-[24px]'/> </Link>
-            <Link to={"/"}> <FaYoutube className='w-[24px] h-[24px]'/> </Link>
+    <div className="bg-richblack-800">
+      <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-richblack-400 leading-6 mx-auto relative py-14">
+        <div className="border-b w-[100%] flex flex-col lg:flex-row pb-5 border-richblack-700">
+          {/* Section 1 */}
+          <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
+            <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
+              <img src={Logo} alt="" className="object-contain" />
+              <h1 className="text-richblack-50 font-semibold text-[16px]">
+                Company
+              </h1>
+              <div className="flex flex-col gap-2">
+                {["About", "Careers", "Affiliates"].map((ele, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                    >
+                      <Link to={ele.toLowerCase()}>{ele}</Link>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex gap-3 text-lg">
+                <FaFacebook />
+                <FaGoogle />
+                <FaTwitter />
+                <FaYoutube />
+              </div>
+              <div></div>
             </div>
-    </div>
-    {/* second section */}
-    <div className='flex flex-col gap-8' >   
-        <div className='flex flex-col gap-4'>
-            <div className='text-xl text-richblack-100'>Company</div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Articles </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Blog </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Chart Sheet </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Docs </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Projects </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Videos </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Workspaces </Link> </div>
-        </div>
-        <div className='flex flex-col gap-4'>
-        <div className='text-xl text-richblack-100'>Support</div>
-        <div className='text-richblack-400'> <Link  to={"/"}> Help Center </Link> </div>
-        </div>
-    </div>
-    {/* Third section */}
-    <div className='flex flex-col gap-8' >   
-        <div className='flex flex-col gap-4'>
-            <div className='text-xl text-richblack-100'>Plans</div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Paid memberships</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> For students </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Business solutions</Link>  </div>
-        </div>
-        <div className='flex flex-col gap-4'>
-        <div className='text-xl text-richblack-100'>Community</div>
-        <div className='text-richblack-400'> <Link  to={"/"}> Forums</Link> </div>
-        <div className='text-richblack-400'> <Link  to={"/"}> Chapters</Link> </div>
-        <div className='text-richblack-400'> <Link to={"/"}>Events</Link> </div>
-        </div>
-    </div>
-    {/* Border  */}
-    <div className='border border-richblack-600'></div>
-    {/* 4rd section */}
-    <div className='flex flex-col gap-8' >   
-        <div className='flex flex-col gap-4'>
-            <div className='text-xl text-richblack-100'>Subjects</div>
-            <div className='text-richblack-400'> <Link  to={"/"}> AI</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Cloud Computing</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Code Foundations</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Computer Science</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Cybersecurity</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Data Analytics</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Data Science</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Data Visualization</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Developer Tools</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>DevOps</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Game Development</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>IT</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Machine Learning</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Math</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Developer Tools</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Web Design</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Web Development</Link> </div>        </div>
-    
-    </div>
-    {/* 5th section */}
-    <div className='flex flex-col gap-8' >   
-        <div className='flex flex-col gap-4'>
-            <div className='text-xl text-richblack-100'>Languages</div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Bash</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> C</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>C++</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>C#</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Go</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>HTML & CSS</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Java</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>JavaScript</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Kotlin</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>PHP</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Python</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>R</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Ruby</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}> SQL</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Swift</Link>  </div>
-     </div>
-    
-    </div>
-    {/* 6th section */}
-    <div className='flex flex-col gap-8' >   
-        <div className='flex flex-col gap-4'>
-            <div className='text-xl text-richblack-100'>Career building</div>
-            <div className='text-richblack-400'> <Link  to={"/"}> Career paths</Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Career services </Link> </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Interview prep</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Professional certification</Link>  </div>
-            <div className='text-richblack-400'> - </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Full Catalog</Link>  </div>
-            <div className='text-richblack-400'> <Link  to={"/"}>Beta Content</Link>  </div>
-        </div>
-    </div>
-    </div>
-    {/* single line */}
-    <div className='w-full border border-richblack-600'></div>
- {/*privacy section   */}
-    <div className='flex justify-between mt-7'>
-        <div className='flex gap-7'>
-    <div className='text-richblack-400'> <Link  to={"/"}> Privacy Policy </Link> </div>
-    <div className='text-richblack-400'> <Link  to={"/"}> Cookie Policy </Link> </div>
-    <div className='text-richblack-400'> <Link  to={"/"}> Terms </Link> </div>  
-    </div>
-    <div className='text-richblack-400'>Made with <span className='text-pink-200'> ♥ </span> <Link to={"https://www.himanshutiwari.in"}>Himanshutiwari</Link> © 2024 Edunotion</div>
-    </div>
-    </div>
-  )
-}
 
-export default Footer
+            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
+              <h1 className="text-richblack-50 font-semibold text-[16px]">
+                Resources
+              </h1>
+
+              <div className="flex flex-col gap-2 mt-2">
+                {Resources.map((ele, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                    >
+                      <Link to={ele.split(" ").join("-").toLowerCase()}>
+                        {ele}
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">
+                Support
+              </h1>
+              <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
+                <Link to={"/help-center"}>Help Center</Link>
+              </div>
+            </div>
+
+            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
+              <h1 className="text-richblack-50 font-semibold text-[16px]">
+                Plans
+              </h1>
+
+              <div className="flex flex-col gap-2 mt-2">
+                {Plans.map((ele, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                    >
+                      <Link to={ele.split(" ").join("-").toLowerCase()}>
+                        {ele}
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+              <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">
+                Community
+              </h1>
+
+              <div className="flex flex-col gap-2 mt-2">
+                {Community.map((ele, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                    >
+                      <Link to={ele.split(" ").join("-").toLowerCase()}>
+                        {ele}
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2 */}
+          <div className="lg:w-[50%] flex flex-wrap flex-row justify-between pl-3 lg:pl-5 gap-3">
+            {FooterLink2.map((ele, i) => {
+              return (
+                <div key={i} className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
+                  <h1 className="text-richblack-50 font-semibold text-[16px]">
+                    {ele.title}
+                  </h1>
+                  <div className="flex flex-col gap-2 mt-2">
+                    {ele.links.map((link, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                        >
+                          <Link to={link.link}>{link.title}</Link>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto  pb-14 text-sm">
+        {/* Section 1 */}
+        <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
+          <div className="flex flex-row">
+            {BottomFooter.map((ele, i) => {
+              return (
+                <div
+                  key={i}
+                  className={` ${
+                    BottomFooter.length - 1 === i
+                      ? ""
+                      : "border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                  } px-3 `}
+                >
+                  <Link to={ele.split(" ").join("-").toLocaleLowerCase()}>
+                    {ele}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center">Made with ❤️ Himanshu Tiwari © 2024 EduNotion</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Footer;
