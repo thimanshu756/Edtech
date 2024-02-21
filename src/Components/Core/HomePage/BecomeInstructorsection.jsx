@@ -6,15 +6,22 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const BecomeInstructorsection = () => {
   return (
-    <div className='flex flex-col w-[11/12] '>
-    <div className='flex gap-60 items-center flex-row py-[90px] px-[120px]'>
-        <div className='shadow-[25px_20px_20px_0px_#F5F5F5] '>
-        <img src={instructorImg} alt="InstructorImg" className='h-[445px] '/>
+    <div>
+    <div className='flex flex-col gap-60 items-center md:flex-row py-[90px] p-4 md:px-[120px]'>
+        <div className='md:w-[50%]'>
+        <img src={instructorImg} alt="InstructorImg"   className="shadow-white shadow-[-20px_-20px_0_0]"/>
         </div>
-    <div className='w-[39%] '>
-        <div className='text-4xl text-richblack-5 h-28'>Become an <br/> <TextColor text={"instructor"}/> </div>
-        <div className='text-richblack-300 mt-3'>Instructors from around the world teach millions of students on StudyNotion. We provide the tools and skills to teach what you love.</div>
-        <div className='w-fit mt-5'>
+    <div className='md:w-[50%] flex gap-10 flex-col '>
+    <h1 className="lg:w-[50%] text-4xl text-richblack-50 font-semibold ">
+              Become an
+              <TextColor text={" instructor"} />
+            </h1>        
+            <p className="font-medium text-[16px] text-justify w-[90%] text-richblack-300">
+              Instructors from around the world teach millions of students on
+              StudyNotion. We provide the tools and skills to teach what you
+              love.
+            </p>
+            <div className='w-fit mt-5'>
             <Button active={true} linkto={"/sinup"}>
             <div className='flex items-center  gap-2'>    
                 Start Teaching Today 
@@ -23,7 +30,7 @@ const BecomeInstructorsection = () => {
         </Button>  
         </div>
     </div>
-        </div>
+    </div>
     </div>
   )
 }

@@ -4,13 +4,13 @@ import Button from '../HomePage/Button';
 import { TypeAnimation } from 'react-type-animation';
 const CodeBlocks = ({position ,heading ,codes ,para ,button1 ,button2  ,codeColor ,backgroundGradient}) => {
   return (
-    <div className={`flex ${position} my-20 justify-between gap-10 w-[90%]`}>
+    <div className={`flex ${position} my-20 justify-between flex-col md:flex-row lg:gap-10 gap-10`}>
         {/* Section 1 */}
-        <div className='w-[50%] flex flex-col gap-8 '>
+        <div className='w-[100%] lg:w-[50%] flex flex-col gap-8'>
             <div className='text-[36px]'>
              {heading}     
             </div>
-        <div className='text-richblack-300 font-normal text-[20px]'>
+        <div className="text-richblack-300 text-base font-bold w-[85%] -mt-3">
             {para}
         </div>
 
@@ -30,8 +30,8 @@ const CodeBlocks = ({position ,heading ,codes ,para ,button1 ,button2  ,codeColo
         </div>
 
         {/* code section */}
-        <div className= {`flex w-[50%] border-greys-100 relative p-5 font-bold font-mono pr-2`}>
-            <div className='flex flex-col ml-7 mr-5'>
+        <div className= {`h-fit code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px]`}>
+            <div className='text-center flex flex-col   w-[10%] select-none text-richblack-400 font-inter font-bold'>
                 <p>1</p>
                 <p>2</p>
                 <p>3</p>
@@ -45,8 +45,7 @@ const CodeBlocks = ({position ,heading ,codes ,para ,button1 ,button2  ,codeColo
                 <p>11</p>
                 <p>12</p>
             </div>
-    <div className= {`w-[60%]  gap-2 ${codeColor}  `}>
-    {/* bg-gradient-to-b from-[#8A2BE2] from-6.46% via-[#FFA500] via-59.04% to-[#F8F8FF] to-124.53% */}
+    <div    className={`w-[90%] flex flex-col gap-2 font-bold font-mono ${codeColor} pr-1`}>
     <span className={` rounded-[372.949px] w-[472.949px] h-[257.054px] absolute left-0 top-[-5px] border p-5 font-bold font-mono ${backgroundGradient} blur-[34px] opacity-20 pr-2`}> </span>
 
     <TypeAnimation 
@@ -61,8 +60,6 @@ const CodeBlocks = ({position ,heading ,codes ,para ,button1 ,button2  ,codeColo
         {
             whiteSpace:"pre-line",
             display:"block",
-            width:"100%",
-            fontSize:"14px",
         
         }
     }
@@ -76,3 +73,5 @@ const CodeBlocks = ({position ,heading ,codes ,para ,button1 ,button2  ,codeColo
 }
 
 export default CodeBlocks
+
+
