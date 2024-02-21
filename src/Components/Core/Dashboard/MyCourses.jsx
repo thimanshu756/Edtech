@@ -22,7 +22,6 @@ export default function MyCourses() {
     fetchCourses()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
   return (
     <div>
       <div className="mb-14 flex items-center justify-between">
