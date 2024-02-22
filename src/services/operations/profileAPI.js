@@ -5,7 +5,7 @@ import { apiconnector } from "../apiconnector"
 import { profileEndpoints } from "../apis"
 import { logout } from "./authApiControllers"
 
-const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API, GET_INSTRUCTOR_DATA_API } = profileEndpoints
+const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API, GET_INSTRUCTOR_DATA_API, GET_ALL_INSTRUCTOR_API } = profileEndpoints
 
 export function getUserDetails(token, navigate) {
   return async (dispatch) => {
@@ -33,7 +33,6 @@ export function getUserDetails(token, navigate) {
     dispatch(setLoading(false))
   }
 }
-
 export async function getUserEnrolledCourses(token) {
   const toastId = toast.loading("Loading...")
   let result = [
@@ -65,7 +64,6 @@ export async function getUserEnrolledCourses(token) {
   toast.dismiss(toastId)
   return result
 }
-
 export async function getInstructorData(token) {
   const toastId = toast.loading("Loading...");
   let result = [];
@@ -86,3 +84,25 @@ export async function getInstructorData(token) {
   toast.dismiss(toastId);
   return result;
 }
+
+export async function getAllInstructor() {
+  const toastId = toast.loading("Loading...");
+  console.log("aa gya");
+  let result = [];
+  try{
+    console.log("aa gya");
+
+    const response = await apiconnector("GET", GET_ALL_INSTRUCTOR_API)
+
+    result=response.data.data
+    console.log("All Instructor Api -->", result);
+  }
+  catch(error) {
+    console.log("All Instructor Api ERROR", error);
+    toast.error("Could not Get All Instructor Data")
+  }
+  toast.dismiss(toastId);
+  
+  return result;
+}
+

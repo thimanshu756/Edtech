@@ -334,6 +334,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
   } catch (error) {
     console.log("COURSE_FULL_DETAILS_API API ERROR............", error)
     result = error.response.data
+    toast.error("Server Error Please Try Again Later")
     // toast.error(error.response.data.message);
   }
   toast.dismiss(toastId)
@@ -361,8 +362,8 @@ export const markLectureAsComplete = async (data, token) => {
     toast.success("Lecture Completed")
     result = true
   } catch (error) {
-    console.log("MARK_LECTURE_AS_COMPLETE_API API ERROR............", error)
-    toast.error(error.response.data.message)
+    console.log("MARK_LECTURE_AS_COMPLETE_API API ERROR............", error.response.data.error)
+    toast.error(error.response.data.error)
     result = false
   }
   toast.dismiss(toastId)
@@ -385,8 +386,8 @@ export const createRating = async (data, token) => {
     success = true
   } catch (error) {
     success = false
-    console.log("CREATE RATING API ERROR............", error)
-    toast.error(error.message)
+    // console.log("CREATE RATING API ERROR............", error.response.data.message)
+    toast.error(error.response.data.message)
   }
   toast.dismiss(toastId)
   return success

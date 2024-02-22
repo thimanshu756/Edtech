@@ -78,7 +78,6 @@ exports.deleteProfile = async (req, res) => {
 // get all the users
 exports.getAllUsers = async (req, res) => {
 
-
   try {
     // get id
     const { ID } = req.params;
@@ -187,7 +186,7 @@ exports.getEnrolledCourses = async (req, res) => {
       })
       .exec()
     userDetails = userDetails.toObject()
-    console.log("userDetails -->",userDetails.courses);
+    console.log("userDetails -->", userDetails.courses);
     var SubsectionLength = 0
     for (var i = 0; i < userDetails.courses.length; i++) {
       let totalDurationInSeconds = 0
@@ -196,11 +195,11 @@ exports.getEnrolledCourses = async (req, res) => {
         totalDurationInSeconds += userDetails.courses[i].courseContent[
           j
         ].subSection.reduce((acc, curr) => acc + parseInt(curr.timeDuration), 0)
-        console.log("total duration in seconds -->",totalDurationInSeconds);
+        console.log("total duration in seconds -->", totalDurationInSeconds);
         userDetails.courses[i].totalDuration = convertSecondsToDuration(
           totalDurationInSeconds
         )
-        console.log("total duration after conversion -->",convertSecondsToDuration(totalDurationInSeconds));
+        console.log("total duration after conversion -->", convertSecondsToDuration(totalDurationInSeconds));
         SubsectionLength +=
           userDetails.courses[i].courseContent[j].subSection.length
       }
@@ -208,9 +207,9 @@ exports.getEnrolledCourses = async (req, res) => {
         courseId: userDetails.courses[i]._id,
         userId: userId,
       })
-      console.log("courseProgress count -->",courseProgressCount);
+      console.log("courseProgress count -->", courseProgressCount);
       courseProgressCount = courseProgressCount?.completedVideos.length
-      console.log("courseProgress count 2-->",courseProgressCount);
+      console.log("courseProgress count 2-->", courseProgressCount);
       if (SubsectionLength === 0) {
         userDetails.courses[i].progressPercentage = 100
       } else {
@@ -223,7 +222,7 @@ exports.getEnrolledCourses = async (req, res) => {
       }
     }
 
-    console.log("data -->",userDetails.courses);
+    console.log("data -->", userDetails.courses);
     if (!userDetails) {
       return res.status(400).json({
         success: false,
@@ -262,6 +261,37 @@ exports.instructorDashboard = async (req, res) => {
     res.status(200).json({ courses: courseData })
   } catch (error) {
     console.log(error)
-    res.status(500).json({ message: "Server Error",error:error.message })
+    res.status(500).json({ message: "Server Error", error: error.message })
+  }
+}
+exports.getAllInstructor = async (req, res) => {
+  try {
+    console.log("inside get all Instructor");
+    const allInstructors = await User.find({
+      accountType: "Instructor"
+    }).populate({
+      path: "additionalDetails",
+      select: "about",
+    })
+    // console.log("All Instructors -->",allInstructors);
+    if (!allInstructors) {
+      return res.status(400).json({
+        message: "AllInstructors not found",
+        success: false,
+    
+      })
+    }
+    return res.status(200).json({
+      success:true,
+      message:"Sucessfully Fetched instructor data",
+      data:allInstructors
+    })
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      message: "Instructor not found getting error in controller",
+      success: false,
+      error: error
+    })
   }
 }

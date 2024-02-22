@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRightLong } from "react-icons/fa6";
 
@@ -10,8 +10,11 @@ import TimelineSection from '../Components/Core/HomePage/TimelineSection';
 import BecomeInstructorsection from '../Components/Core/HomePage/BecomeInstructorsection';
 import ExploreMore from '../Components/Core/HomePage/ExploreMore';
 import Footer from "../Components/Common/Footer"
+import {getAllInstructor} from "../services/operations/profileAPI"
+import ReviewSlider from "../Components/Common/ReviewSlider"
+import InstructorSlider from '../Components/Common/InstructorSlider';
 const Home = () => {
-    
+
   return (
     <div className=''>
         {/* Section 1 */}
@@ -66,7 +69,6 @@ const Home = () => {
             backgroundGradient={" bg-gradient-to-b from-[#8A2BE2] from-6.46% via-[#FFA500] via-59.04% to-[#F8F8FF] to-124.53%"}
             />
             </div>
-
             <div className=''>
             <CodeBlocks 
             position={"flex-col md:flex-row-reverse"}
@@ -84,6 +86,14 @@ const Home = () => {
             codeColor={"text-pink-300"}
             backgroundGradient={" bg-gradient-to-b from-[#1FA2FF] from-3.62% via-[#12D8FA] via-50.44% to-[#A6FFCB ] to-104.53%"}
             />
+            </div>
+            <div>
+            </div>
+            <div  className=' h-fit'>
+            <h1 className="text-center text-4xl font-semibold mt-8">
+          Learn from the Professionals
+        </h1>
+            <InstructorSlider/>
             </div>
             {/* Extra div */}
             <div className='h-[100px]'></div>
@@ -103,21 +113,23 @@ const Home = () => {
           <Button active={false} linkto={"/signup"}>
             <div className='flex flex-row gap-3 items-center text-white '>
             Learn More 
-          
             </div>
           </Button>
         </div>
         </div>
         <div>
-        
-        </div>
+     </div>
         <div className='mb-10'>
         <TimelineSection/>
         </div>
         </div>
-  
             <div>
             <BecomeInstructorsection/>
+                    {/* Reviws from Other Learner */}
+        <h1 className="text-center text-4xl font-semibold mt-8">
+          Reviews from other learners
+        </h1>
+        <ReviewSlider />
             </div>
          <Footer/>
     </div>
