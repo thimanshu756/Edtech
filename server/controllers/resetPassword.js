@@ -1,6 +1,7 @@
 const User = require("../models/Users")
 const mailSender = require("../utils/mailSender")
 const bcrypt = require("bcrypt")
+// const crypto = require("crypto");
 // resetpassword token
 
 exports.resetPasswordToken=async(req,res)=>{
@@ -24,7 +25,7 @@ exports.resetPasswordToken=async(req,res)=>{
                 message:"Enterd email has no account ! Please create first"
             })
         }
-        const token = crypto.randomUUID();
+		const token = crypto.randomBytes(20).toString("hex");
 
         const url = `http://localhost:3000/update-password/${token}`
 
@@ -32,7 +33,7 @@ exports.resetPasswordToken=async(req,res)=>{
         const updatedDetails= await User.findOneAndUpdate({email:email},
             {
                 token:token,
-                resetPasswordExpires:Date.now()+5*60*100
+                resetPasswordExpires:Date.now()+ 3600000
             },
             {new:true})
             // send the mail containing the url
@@ -61,16 +62,10 @@ exports.resetPassword=async(req,res)=>{
             message:"Fill all the fields properly"
         })
     }
-    // console.log("token is -->",token);
-    // console.log("Finding user details");
-    // get userdetails from db using token
+ 
     const userDetails = await User.findOne({token:token});
-    // console.log("User details found -->",userDetails);
-    // no entry if token is expired
-    // console.log("date is --->",userDetails.resetPasswordExpires);
-    // console.log(" my date is --->",Date.now());
-    // getting some error here look at it
-    if (!(userDetails.resetPasswordExpires>Date.now())){
+
+    if (!(userDetails.resetPasswordExpires > Date.now())){
         return res.status(401).json({
             success:false,
             message:"Token expired ! please try again"
