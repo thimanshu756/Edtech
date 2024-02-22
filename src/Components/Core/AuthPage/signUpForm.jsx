@@ -70,11 +70,11 @@ const SignUpForm = ({userType,setAccountType,accountType}) =>{
   <div className='flex gap-10 mb-4'>
   <div>
   <p className='-mb-2 ml-2'>First Name<sup className='text-pink-200 '>*</sup> </p> <br />
-  <input type="text" id='firstName' name='firstName' value={firstName} onChange={handleOnChange} placeholder='Enter First Name' className='bg-richblack-800 rounded-lg p-[12px] w-[100px]'/> 
+  <input type="text" id='firstName' name='firstName' value={firstName} onChange={handleOnChange} placeholder='Enter First Name' className='bg-richblack-800 rounded-lg p-[12px] w-[100px] md:w-[200px]'/> 
   </div>
   <div>
     <p className='-mb-2 ml-2'>Last Name <sup className='text-pink-200 '>*</sup> </p> <br />
-    <input type="text" id='lastName' name='lastName' value={lastName} onChange={handleOnChange} placeholder='Enter Last Name' className='bg-richblack-800 rounded-lg p-[12px] w-[100px]'/>
+    <input type="text" id='lastName' name='lastName' value={lastName} onChange={handleOnChange} placeholder='Enter Last Name' className='bg-richblack-800 rounded-lg p-[12px] w-[100px] md:w-[200px]'/>
   </div>
   </div>
   {/* email form */}
@@ -83,7 +83,7 @@ const SignUpForm = ({userType,setAccountType,accountType}) =>{
   <input type="text" id='email' name='email' value={email}  onChange={handleOnChange} placeholder='Enter Email adress' className='bg-richblack-800 rounded-lg p-[12px] w-[250px] md:w-[440px]'/> 
   </div>
   {/* password */}
-  <div className='flex flex-col gap-10 mb-4'>
+  <div className='flex flex-col  md:flex-row gap-10 mb-4'>
   <div>
   <p className='-mb-2 ml-2'>Create Password<sup className='text-pink-200 '>*</sup> </p> <br />
   <div className='bg-richblack-800 rounded-lg p-[12px] w-[250px] md:w-[200px] flex  items-center'>
