@@ -6,7 +6,7 @@ const Profile = require("../models/Profile");
 const jwt = require("jsonwebtoken")
 const dotenv = require("dotenv");
 const mailSender = require("../utils/mailSender");
-const {passwordUpdated} = require("../Templates/passwordUpdate")
+const {passwordUpdated} = require("../templates/passwordUpdate")
 dotenv.config();
 
 
