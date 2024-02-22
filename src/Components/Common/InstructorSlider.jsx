@@ -29,7 +29,7 @@ const InstructorSlider = () => {
     {
         !Instructor ? (<div className=' text-richblack-25'>Loading......</div>):(
             <div className="text-white">
-      <div className="my-[50px] w-fit  max-w-maxContentTab lg:max-w-maxContent">
+      <div className="my-[50px]">
       {/* <div> */}
       <Swiper
           slidesPerView={3}

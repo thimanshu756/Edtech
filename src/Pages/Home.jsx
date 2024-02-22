@@ -89,8 +89,8 @@ const Home = () => {
         </div>
         <div>
         </div>
-        <div className=' h-fit'>
-          <h1 className=" text-richblack-25 text-4xl w-[300px] md:w-[800px] mx-auto font-semibold">
+        <div className=' h-[500px] w-[100%]'>
+          <h1 className=" text-richblack-25 text-4xl overflow-hidden w-[300px] md:w-[800px] mx-auto font-semibold">
             Learn from the Professionals
           </h1>
           <InstructorSlider />
