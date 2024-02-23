@@ -32,7 +32,7 @@ const InstructorSlider = () => {
       <div className="my-[50px]">
       {/* <div> */}
       <Swiper
-          slidesPerView={3}
+          slidesPerView={1}
           spaceBetween={10}
           loop={true}
           freeMode={true}
@@ -66,7 +66,7 @@ const InstructorSlider = () => {
              
                 return (
                     <SwiperSlide key={i}>
-                     <div className="flex flex-col gap-3  bg-richblack-800 p-3 h-[200px] md:h-[300px] w-[] text-[14px] text-richblack-25">
+                     <div className="flex flex-col gap-3  bg-richblack-800 p-3 h-[350px] md:h-[350px] w-[] text-[14px] text-richblack-25">
                      <div className="flex items-center flex-col gap-4">
                     <img
                       src={
@@ -74,13 +74,13 @@ const InstructorSlider = () => {
                           : `https://api.dicebear.com/5.x/initials/svg?seed=${user?.firstName} ${user?.lastName}`
                       }
                       alt=""
-                      className="h-[50%] w-[80%] rounded-md object-cover"
+                      className="h-[70%] w-[80%] rounded-md object-cover"
                     />
                     <div className="flex flex-col">
                       <h1 className="font-semibold text-center text-richblack-5">{`${user?.firstName} ${user?.lastName}`}</h1>
                      
                     </div>
-                    <p> {user?.additionalDetails?.about}</p>
+                    <p className=' overflow-hidden'> {user?.additionalDetails?.about}</p>
                   </div>
                     </div>
                     </SwiperSlide>

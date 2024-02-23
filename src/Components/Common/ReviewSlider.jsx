@@ -68,13 +68,13 @@ function ReviewSlider() {
               spaceBetween: 50,
             },
           }}
-         // modules={[FreeMode, Pagination, Autoplay]}
+          modules={[FreeMode, Pagination, Autoplay]}
           className="w-full "
         >
           {reviews.map((review, i) => {
             return (
               <SwiperSlide key={i}>
-                <div className="flex flex-col gap-3 h-[200px]  bg-richblack-800 p-3 text-[14px] text-richblack-25">
+                <div className="flex flex-col gap-3 h-[250px] md:h-[200px]  bg-richblack-800 p-3 text-[14px] text-richblack-25">
                   <div className="flex items-center gap-4">
                     <img
                       src={

@@ -28,6 +28,7 @@ import ViewCourse from "./Pages/ViewCourse";
 import VideoDetails from "./Components/Core/viewCourse/VideoDetails";
 import Instructor from "./Components/Core/Dashboard/InstructorDashboard/InstructorDashboard";
 import Contact from "./Pages/ContactUs";
+import Error from "./Pages/Error";
 
 function App() {
 
@@ -121,6 +122,7 @@ function App() {
             )
           }
         </Route>
+        <Route path="*" element={ <Error/> }/>
       </Routes>
     </div>
   );

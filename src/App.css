@@ -383,14 +383,14 @@ details > summary::-webkit-details-marker {
 }
 
 .swiper-slide {
-  text-align: center;
+  /* text-align: center; */
   font-size: 18px;
-  background: #fff;
 
-  /* Center slide text vertically */
+
+  /* Center slide text vertically
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 /* .swiper-slide img {
