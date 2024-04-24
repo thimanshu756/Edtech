@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { forgotPasswordToken } from '../services/operations/authApiControllers';
 import { setEmailSent } from "../Slices/authSlice"
 import { GoArrowLeft } from "react-icons/go";
+import Spinnner from '../Components/Common/Spinnner';
 
 const ForgotPassword = () => {
     const {loading}= useSelector((state)=>state.auth);
@@ -18,7 +19,9 @@ const ForgotPassword = () => {
     <div className=' text-white h-[100vh] w-auto  flex flex-col justify-center items-center'>
         <div className=' p-8 xxs:pl-[50px]'>
         {
-            loading ? ( <div>Loading......</div> ):(
+            loading ? ( <div className=' my-auto'>
+                <Spinnner/>
+            </div> ):(
                 <div>
                     {
                         emailSent ? (
