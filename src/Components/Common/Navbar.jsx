@@ -43,8 +43,6 @@ const Navbar = () => {
 
   }, [])
 
-
-
   const matchRoute = (route) => {
     // console.log("local token -->", localStorage.getItem("token"));
     return matchPath(

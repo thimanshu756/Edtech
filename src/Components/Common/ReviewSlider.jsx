@@ -12,17 +12,25 @@ import "../../App.css"
 import { FaStar } from "react-icons/fa"
 // Import required modules
 import { Autoplay, FreeMode, Pagination } from "swiper/modules"
-
+import { setLoading } from '../../Slices/profileSlice.js';
 // Get apiFunction and the endpoint
 import { apiconnector } from "../../services/apiconnector"
 import { ratingsEndpoints } from "../../services/apis"
+import Spinnner from "./Spinnner.jsx"
+
+
+
 
 function ReviewSlider() {
+
+  const [loading,SetLoading]=useState(false);
   const [reviews, setReviews] = useState([])
   const truncateWords = 15
 
   useEffect(() => {
     ;(async () => {
+      console.log("Inside reviewss");
+      SetLoading(true)
       const { data } = await apiconnector(
         "GET",
         ratingsEndpoints.REVIEWS_DETAILS_API
@@ -30,9 +38,12 @@ function ReviewSlider() {
       if (data?.success) {
         setReviews(data?.data)
       }
-
+      console.log("Inside reviewss -->",loading);
+      SetLoading(true)
+      // dispatch(setLoading(false));
     })()
   }, [])
+
   console.log("reviews aree -->",reviews);
   // console.log(reviews)
 
@@ -40,8 +51,17 @@ function ReviewSlider() {
    
     <div className="text-white">
       <div className="">
-      {/* <div> */}
-        <Swiper
+
+        {
+          loading ? (
+            <>
+            <div className=" w-screen mx-auto">
+                  <Spinnner />
+            </div>
+            </>
+          ):(
+            <>
+         <Swiper
           slidesPerView={4}
           spaceBetween={25}
           loop={true}
@@ -71,6 +91,7 @@ function ReviewSlider() {
           modules={[FreeMode, Pagination, Autoplay]}
           className="w-full "
         >
+      
           {reviews.map((review, i) => {
             return (
               <SwiperSlide key={i}>
@@ -120,6 +141,10 @@ function ReviewSlider() {
             )
           })}
         </Swiper>
+            </>
+          )
+        }
+   
       </div>
     </div>
   )
