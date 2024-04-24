@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { resetPassword } from '../services/operations/authApiControllers';
+import Spinnner from '../Components/Common/Spinnner';
 
 const UpdatePassword = () => {
     const {loading}= useSelector((state)=>state.auth);
@@ -27,7 +28,9 @@ const UpdatePassword = () => {
   return (
     <div className='text-white h-[100vh] w-auto  flex flex-col justify-center items-center gap-9'>
         {
-            loading ? ( <div>Loading.....</div> ):(
+            loading ? ( <div className=' my-auto'>
+                <Spinnner/>
+            </div> ):(
                 resetComplete ?(
                 <div className='flex gap-5 flex-col'>
                     <h1 className=" text-2xl">Reset complete!</h1>

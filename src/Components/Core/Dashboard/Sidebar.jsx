@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../../../services/operations/authApiControllers';
 import { VscSignOut } from 'react-icons/vsc';
 import ConfirmationModal from '../../Common/ConfirmationModal';
+import Spinnner from '../../Common/Spinnner';
 const Sidebar = () => {
     const{loading :authLoading}= useSelector((state)=>state.auth);
     const {user,loading :profileLoading}=useSelector((state)=>state.profile);
@@ -16,7 +17,9 @@ const Sidebar = () => {
     const [confirmationModal, setConfimationModal]=useState();
     if(authLoading || profileLoading){
         return (
-            <div>Loading.....</div>
+            <div>
+              <Spinnner/>
+            </div>
         )
     }
 
