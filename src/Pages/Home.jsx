@@ -13,6 +13,7 @@ import Footer from "../Components/Common/Footer"
 import { getAllInstructor } from "../services/operations/profileAPI"
 import ReviewSlider from "../Components/Common/ReviewSlider"
 import InstructorSlider from '../Components/Common/InstructorSlider';
+
 const Home = () => {
 
   return (

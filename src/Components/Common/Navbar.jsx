@@ -11,20 +11,27 @@ import { categories } from '../../services/apis.js';
 import { IoIosArrowDown } from "react-icons/io";
 import { ACCOUNT_TYPE } from "../../utils/constants.js"
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
+import { setLoading } from '../../Slices/profileSlice.js';
+import SpinnerNavbar from './SpinnerNavbar.jsx';
+import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
   let location = useLocation();
   const { token } = useSelector((state) => state.auth);
-  const { user } = useSelector((state) => state.profile);
+  const { user,loading } = useSelector((state) => state.profile);
   const { totalItems } = useSelector((state) => state.cart);
-
+  const dispatch = useDispatch()
   const [subLinks, setSubLinks] = useState([]);
   const [openButton , setOpenButton]= useState(true)
+
   const fetchSublinks = async () => {
     try {
+      dispatch(setLoading(true));
       const result = await apiconnector("GET", categories.CATEGORIES_API);
-      console.log("subliks are -->", result.data.allCategories);
+      // console.log("subliks are -->", result.data.allCategories);
+      console.log("loading in navbr -->",loading);
       setSubLinks(result.data.allCategories)
+      dispatch(setLoading(false));
     } catch (error) {
       console.log("could not fetch the category data");
     }
@@ -58,7 +65,7 @@ const Navbar = () => {
         <nav className=' h-auto'>
           <ul className={` ${openButton ? " block":"hidden"} flex flex-col w-[250px] h-[250px] nav-ul z-0 top-20 right-2 p-2 rounded-md overflow-hidden bg-white gap-x-6 text-richblack-25 md:h-auto  md:top-0 md:overflow-hidden md:flex-row md:bg-richblack-900 md:w-auto`}>
           {/* <ul className='flex gap-x-6  text-richblack-25'> */}
-            {
+          {
               NavbarLinks.map((link, i) => {
                 // console.log("link-->",link.title);
                 return <li key={i}>
@@ -70,6 +77,11 @@ const Navbar = () => {
                         <div className=' opacity-0 invisible group-hover:visible group-hover:opacity-100  transition-all duration-200'>
                         <div className='absolute  top-4 translate-x-[95%] translate-y-[80%] h-6 w-6 rotate-45 rounded bg-richblack-5 md:left-[45.2%] md:top-4 md:translate-x-[95%] md:translate-y-[80%]'></div>
                           <div className=' absolute top-[5%]  catalog-dropdown translate-x-[-40%] flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900  lg:w-[300px] md:top-[5%] md:translate-x-[-40%]'>
+                      {
+                        loading?(<>
+                        <SpinnerNavbar/>
+                        </>):(
+                          <>
                             {
                               subLinks.length ? (
                                 subLinks?.map((subLink, index) => {
@@ -84,6 +96,10 @@ const Navbar = () => {
                                 })
                               ) : (<div>Nothing Here</div>)
                             }
+                          </>
+                        )
+                      }
+                          
                           </div>
                         </div>
                       </div>) : (
@@ -99,6 +115,9 @@ const Navbar = () => {
                 </li>
               })
             }
+         
+          
+            {/* Signin and signup field */}
             <li>
             {
                 token == null &&(
@@ -114,6 +133,7 @@ const Navbar = () => {
               }
             
             </li>
+            {/* Dashboard */}
             <li>
             {token !== null && <div className=' md:hidden text-richblack-800 md:text-richblack-25'>
               <Link to="/dashboard/my-profile">
@@ -124,7 +144,7 @@ const Navbar = () => {
           </ul>
         </nav>
 
-
+              {/* Small screen */}
         <div className=' flex items-center gap-x-2'>
         <div className='hidden md:flex gap-x-5  '>
             {token === null && (
