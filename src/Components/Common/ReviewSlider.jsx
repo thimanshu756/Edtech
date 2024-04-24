@@ -39,7 +39,7 @@ function ReviewSlider() {
         setReviews(data?.data)
       }
       console.log("Inside reviewss -->",loading);
-      SetLoading(true)
+      SetLoading(false)
       // dispatch(setLoading(false));
     })()
   }, [])

@@ -3,12 +3,25 @@ import TextHighlight from '../Components/Core/AuthPage/TextHighlight';
 import LoginForm from '../Components/Core/AuthPage/loginForm';
 import loginImg from "../assets/Images/login.webp"
 import { ACCOUNT_TYPE } from '../utils/constants';
+import { useSelector } from 'react-redux';
+import Spinnner from '../Components/Common/Spinnner';
 
 const Login = () => {
+  const {loading } = useSelector((state) => state.profile);
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.INSTRUCTOR)
+
     return (
       <>
-    <div className=' w-11/12 bg-richblack-900 max-w-maxContent flex flex-col-reverse md:flex-row justify-between items-center p-10  mb-28 '>
+      {
+        loading?(
+          <>
+          <div className='  my-auto'>
+                <Spinnner/> 
+          </div>
+     
+          </>
+        ):(
+             <div className=' w-11/12 bg-richblack-900 max-w-maxContent flex flex-col-reverse md:flex-row justify-between items-center p-10  mb-28 '>
         {/* form */}
         <div className='flex md:w-[508px] p-[32px] flex-col gap-[16px] '>
         <div className=''>
@@ -32,6 +45,9 @@ const Login = () => {
             <img src={loginImg} alt="" className='lg:h-[504px] lg:w-[558px] shadow-[25px_20px_20px_0px_#F5F5F5]'/>
         </div>
     </div>
+        )
+      }
+ 
 
     </>
   )

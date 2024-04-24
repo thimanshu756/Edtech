@@ -12,6 +12,7 @@ import "../../App.css"
 import { FaStar } from "react-icons/fa"
 // Import required modules
 import { Autoplay, FreeMode, Pagination } from "swiper/modules"
+import Spinnner from './Spinnner'
 
 const InstructorSlider = () => {
     const [Instructor , setInstructor]=useState(null)
@@ -23,11 +24,13 @@ const InstructorSlider = () => {
     useEffect(()=>{
         FaFirstAid();
       },[])
-    console.log("Instructor is -->",Instructor);
+
   return (
     <>
     {
-        !Instructor ? (<div className=' text-richblack-25'>Loading......</div>):(
+        !Instructor ? (<div className=' text-richblack-25 mt-24'>
+          <Spinnner/>
+        </div>):(
             <div className="text-white">
       <div className="my-[50px]">
       {/* <div> */}
