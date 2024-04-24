@@ -86,12 +86,11 @@ export function login(email, password, navigate) {
         const toastId = toast.loading("Loading...")
         dispatch(setLoading(true))
         try {
-           
           const response = await apiconnector("POST", LOGIN_API, {
             email,
             password,
           })
-    
+
           console.log("LOGIN API RESPONSE............", response)
     
           if (!response.data.success) {

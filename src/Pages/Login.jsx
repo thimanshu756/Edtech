@@ -27,8 +27,8 @@ const Login = () => {
         <div className=''>
             {
                      accountType=="Instructor" ? (<div className='flex flex-col gap-2 '>
-                        <p className='text-richblack-5 font-inter text-4xl  '>Welcome Back </p>
-                        <p className='text-richblack-100 font-inter  '>Discover your passions, <TextHighlight text={" Be Unstoppable "} /></p>
+                        <p className='text-richblack-5 font-inter text-4xl  h-[50px]'>Welcome Back </p>
+                        <p className='text-richblack-100 font-inter h-[30px]  '>Discover your passions, <TextHighlight text={" Be Unstoppable "} /></p>
                     </div>):
                     (<div className='flex flex-col gap-4'>
                         <p className='text-richblack-5 font-inter text-3xl  '> Join the millions learning to code with StudyNotion for free</p>
